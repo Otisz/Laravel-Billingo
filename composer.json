@@ -1,0 +1,58 @@
+{
+    "name": "otisz/laravel-billingo",
+    "description": "Billingo REST API integration for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "billingo",
+        "invoice",
+        "client",
+        "vat"
+    ],
+    "authors": [
+        {
+            "name": "Levente Otta",
+            "email": "leventeotta@gmail.com",
+            "homepage": "https://leventeotta.com"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/Otisz/Laravel-Billingo",
+        "issues": "https://github.com/Otisz/Laravel-Billingo/issues"
+    },
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^5.0",
+        "voov/billingo-api-connector": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Otisz\\Billingo\\": "src"
+        }
+    },
+    "scripts": {
+        "lint": "phpcs -p --standard=psr2 src"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Otisz\\Billingo\\Providers\\ServiceProvider"
+            ],
+            "aliases": {
+                "Billingo": "Otisz\\Billingo\\Facades\\Billingo"
+            }
+        }
+    },
+    "non-feature-branches": [
+        "hotfix/*",
+        "release/*",
+        "feature/*",
+        "latest/*"
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
