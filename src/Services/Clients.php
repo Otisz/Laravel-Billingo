@@ -11,6 +11,7 @@ namespace Otisz\Billingo\Services;
 use Otisz\Billingo\Abstracts\BillinGoblin;
 use Otisz\Billingo\Contracts\Clients as ClientInterface;
 use Otisz\Billingo\Exceptions\TooManyResourcePerPageException;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class Clients
@@ -24,7 +25,15 @@ class Clients extends BillinGoblin implements ClientInterface
     /**
      * @inheritdoc
      */
-    public static function all(int $page = 1, int $maxPerPage = 20)
+    public static function query(array $filters): ResponseInterface
+    {
+        return self::get('invoices/query', $filters);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function all(int $page = 1, int $maxPerPage = 20): ResponseInterface
     {
         if ($maxPerPage > 50) {
             throw new TooManyResourcePerPageException;
@@ -41,7 +50,7 @@ class Clients extends BillinGoblin implements ClientInterface
     /**
      * @inheritdoc
      */
-    public static function create(array $clientPayload)
+    public static function create(array $clientPayload): ResponseInterface
     {
         return self::post('clients', $clientPayload);
     }
@@ -49,7 +58,7 @@ class Clients extends BillinGoblin implements ClientInterface
     /**
      * @inheritdoc
      */
-    public static function show($clientId)
+    public static function show($clientId): ResponseInterface
     {
         return self::get("clients/{$clientId}");
     }
@@ -57,7 +66,7 @@ class Clients extends BillinGoblin implements ClientInterface
     /**
      * @inheritdoc
      */
-    public static function update($clientId, array $clientPayload)
+    public static function update($clientId, array $clientPayload): ResponseInterface
     {
         return self::put("clients/{$clientId}", $clientPayload);
     }
@@ -65,7 +74,7 @@ class Clients extends BillinGoblin implements ClientInterface
     /**
      * @inheritdoc
      */
-    public static function destroy($clientId)
+    public static function destroy($clientId): ResponseInterface
     {
         return self::delete("clients/{$clientId}");
     }
