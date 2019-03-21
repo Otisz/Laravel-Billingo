@@ -1,4 +1,4 @@
-# Laravel Imgix
+# Laravel Billingo
 
 [![Latest Version on Packagist][shield-packagist]][link-packagist]
 [![Software License][shield-license]](LICENSE.md)
