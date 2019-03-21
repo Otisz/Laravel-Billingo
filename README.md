@@ -87,10 +87,10 @@ Before you can use the Billingo service provider you have configure it with your
 \Otisz\Billingo\Services\Clients::create(array $clientPayload)
 ```
 
-#### Show a client:
+#### Find a client:
 [Check out the official documentation](https://billingo.readthedocs.io/en/latest/clients/#list-of-clients)
 ```php
-\Otisz\Billingo\Services\Clients::show(int|string $clientId)
+\Otisz\Billingo\Services\Clients::find(int|string $clientId)
 ```
 
 #### Update a client:
@@ -113,13 +113,13 @@ These will be implemented later in minor versions.
 If you need any of these, feel free to use Billingo facade.
 
 ```php
-\Billingo::get(string $uri, array $data = [])
+\Billingo::get(string $uri, array $payload = []);
 
-\Billingo::post(string $uri, array $data = [])
+\Billingo::post(string $uri, array $payload = []);
 
-\Billingo::put(string $uri, array $data = [])
+\Billingo::put(string $uri, array $payload = []);
 
-\Billingo::delete(string $uri, array $data = [])
+\Billingo::delete(string $uri, array $payload = []);
 ```
     
 ## Testing

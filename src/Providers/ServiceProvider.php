@@ -11,7 +11,9 @@ namespace Otisz\Billingo\Providers;
 use Billingo\API\Connector\HTTP\Request as BillingoConnector;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Otisz\Billingo\Billingo;
-use Otisz\Billingo\Services\Clients;
+use Otisz\Billingo\Contracts\Billingo as BillingoContract;
+use Otisz\Billingo\Contracts\Clients as ClientsContract;
+use Otisz\Billingo\Services\Clients as ClientsService;
 
 /**
  * Class ServiceProvider
@@ -50,22 +52,16 @@ class ServiceProvider extends BaseServiceProvider
             ]);
         });
 
-        $this->registerServices();
-
-        $this->app->bind(Billingo::class, function ($app) {
+        $this->app->singleton(Billingo::class, function ($app) {
             return new Billingo($app[BillingoConnector::class]);
         });
-        
-        $this->app->alias(Billingo::class, 'billingo');
-    }
 
-    /**
-     * @author Levente Otta <leventeotta@gmail.com>
-     */
-    private function registerServices(): void
-    {
-        $this->app->bind(Clients::class, function ($app) {
-            return new Clients($app[BillingoConnector::class]);
-        });
+        $this->app->bind(Billingo::class, BillingoContract::class);
+
+        $this->app->bind(ClientsContract::class, ClientsService::class);
+
+        $this->app->bind(ClientsService::class, $this->app[Billingo::class]);
+
+        $this->app->alias(Billingo::class, 'billingo');
     }
 }
