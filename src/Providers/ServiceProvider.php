@@ -52,11 +52,11 @@ class ServiceProvider extends BaseServiceProvider
             ]);
         });
 
+        $this->app->bind(Billingo::class, BillingoContract::class);
+
         $this->app->singleton(Billingo::class, function ($app) {
             return new Billingo($app[BillingoConnector::class]);
         });
-
-        $this->app->bind(Billingo::class, BillingoContract::class);
 
         $this->app->bind(ClientsContract::class, ClientsService::class);
 

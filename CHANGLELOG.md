@@ -1,5 +1,10 @@
 # Release Notes
 
+## [v0.2.0 (2019-03-22)](https://github.com/Otisz/Laravel-Billingo/compare/v0.2.0...v0.2.1)
+
+### Fixed
+- Bind `Billngo.php` contract to `Billingo.php` class before BillingoConnector ([21096e7](https://github.com/Otisz/Laravel-Billingo/commit/21096e798fb747237e2dd825f52997406a7241c0))
+
 ## [v0.2.0 (2019-03-21)](https://github.com/Otisz/Laravel-Billingo/compare/v0.1.0...v0.2.0)
 
 ### Added
