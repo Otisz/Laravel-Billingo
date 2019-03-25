@@ -1,6 +1,15 @@
 # Release Notes
 
-## [v0.2.0 (2019-03-22)](https://github.com/Otisz/Laravel-Billingo/compare/v0.2.0...v0.2.1)
+## [v0.3.0 (2019-03-23)](https://github.com/Otisz/Laravel-Billingo/compare/v0.2.1...v0.3.0)
+
+### Added
+- Added Invoices service ([d9c4111](https://github.com/Otisz/Laravel-Billingo/commit/d9c4111916ffff8618c987617c13170497d9ea5a))
+- Added connector accessor ([d570758](https://github.com/Otisz/Laravel-Billingo/commit/d5707586ca08b02182d8e961d710147fa6477d40))
+
+### Changed
+- Require `illuminate/support` ([0ac5ffb](https://github.com/Otisz/Laravel-Billingo/commit/0ac5ffbb11cd5a5e9b528eef79701f336ba3b780))
+
+## [v0.2.1 (2019-03-22)](https://github.com/Otisz/Laravel-Billingo/compare/v0.2.0...v0.2.1)
 
 ### Fixed
 - Bind `Billngo.php` contract to `Billingo.php` class before BillingoConnector ([21096e7](https://github.com/Otisz/Laravel-Billingo/commit/21096e798fb747237e2dd825f52997406a7241c0))
