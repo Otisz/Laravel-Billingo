@@ -7,7 +7,7 @@
 [Billingo](https://www.billingo.hu) API integration for Laravel.
 
 ## Roadmap
-- [ ] Implement invoices service
+- [x] Implement invoices service (2019. 03. 25)
 - [ ] Implement products service
 - [ ] Implement expenses service
 - [ ] Implement recurring service
@@ -15,12 +15,12 @@
 - [ ] Implement payment methods service
 - [ ] Implement vat service
 - [ ] Implement currency service
-- [ ] Refactor documents of services
+- [x] Refactor documents of services (2019. 03. 25)
 
 ## Dependencies
 
 - [PHP](https://secure.php.net): ^7.1
-- [laravel/framework](https://github.com/laravel/framework): ^5.0
+- [illuminate/support](https://github.com/illuminate/support): ^5.0
 - [voov/billingo-api-connector](https://github.com/voov/Billingo-API-Connector): ^1.1
 
 ## Install
@@ -73,37 +73,10 @@ Before you can use the Billingo service provider you have configure it with your
 ## Usage
 
 ### Clients
+[Check out Clients.md](docs/Clients.md)
 
-#### List of clients:
-[Check out the official documentation](https://billingo.readthedocs.io/en/latest/clients/#list-of-clients)
-```php
-\Otisz\Billingo\Services\Clients::all(int $page = 1, int $maxPerPage = 20)
-```
-**Note:** If `$maxPerPage` is greater than 50, then `\Otisz\Billingo\Exceptions\TooManyResourcePerPageException::class` will be thrown.
-
-#### Create a client:
-[Check out the official documentation](https://billingo.readthedocs.io/en/latest/clients/#create-a-client)
-```php
-\Otisz\Billingo\Services\Clients::create(array $clientPayload)
-```
-
-#### Find a client:
-[Check out the official documentation](https://billingo.readthedocs.io/en/latest/clients/#list-of-clients)
-```php
-\Otisz\Billingo\Services\Clients::find(int|string $clientId)
-```
-
-#### Update a client:
-[Check out the official documentation](https://billingo.readthedocs.io/en/latest/clients/#update-a-client)
-```php
-\Otisz\Billingo\Services\Clients::update(int|string $clientId, array $clientPayload)
-```
-
-#### Delete a client:
-[Check out the official documentation](https://billingo.readthedocs.io/en/latest/clients/#delete-client)
-```php
-\Otisz\Billingo\Services\Clients::destroy(int|string $clientId)
-```
+### Invoices
+[Check out Invoices.md](docs/Invoices.md)
 
 ### Non implemented API features
 
