@@ -38,6 +38,16 @@ class Billingo implements BillingoContract
     /**
      * @author Levente Otta <leventeotta@gmail.com>
      *
+     * @return \Billingo\API\Connector\HTTP\Request
+     */
+    public static function connector()
+    {
+        return self::$connector;
+    }
+
+    /**
+     * @author Levente Otta <leventeotta@gmail.com>
+     *
      * @param string $uri
      * @param array $payload
      *
