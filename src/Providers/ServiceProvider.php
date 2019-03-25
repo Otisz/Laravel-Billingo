@@ -13,7 +13,9 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Otisz\Billingo\Billingo;
 use Otisz\Billingo\Contracts\Billingo as BillingoContract;
 use Otisz\Billingo\Contracts\Clients as ClientsContract;
+use Otisz\Billingo\Contracts\Invoices as InvoicesContract;
 use Otisz\Billingo\Services\Clients as ClientsService;
+use Otisz\Billingo\Services\Invoices as InvoicesService;
 
 /**
  * Class ServiceProvider
@@ -52,16 +54,27 @@ class ServiceProvider extends BaseServiceProvider
             ]);
         });
 
-        $this->app->bind(Billingo::class, BillingoContract::class);
+        $this->registerContracts();
 
+        $this->registerServices();
+
+        $this->app->alias(Billingo::class, 'billingo');
+    }
+
+    public function registerContracts()
+    {
+        $this->app->bind(Billingo::class, BillingoContract::class);
+        $this->app->bind(ClientsContract::class, ClientsService::class);
+        $this->app->bind(InvoicesContract::class, InvoicesService::class);
+    }
+
+    public function registerServices()
+    {
         $this->app->singleton(Billingo::class, function ($app) {
             return new Billingo($app[BillingoConnector::class]);
         });
 
-        $this->app->bind(ClientsContract::class, ClientsService::class);
-
         $this->app->bind(ClientsService::class, $this->app[Billingo::class]);
-
-        $this->app->alias(Billingo::class, 'billingo');
+        $this->app->bind(InvoicesService::class, $this->app[Billingo::class]);
     }
 }
