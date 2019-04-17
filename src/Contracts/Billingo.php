@@ -8,8 +8,10 @@
 
 namespace Otisz\Billingo\Contracts;
 
+use Otisz\BillingoConnector\HTTP\Request;
+
 /**
- * Class Billingo
+ * Interface Billingo
  *
  * @author Levente Otta <leventeotta@gmail.com>
  *
@@ -20,9 +22,9 @@ interface Billingo
     /**
      * @author Levente Otta <leventeotta@gmail.com>
      *
-     * @return \Billingo\API\Connector\HTTP\Request
+     * @return \Otisz\BillingoConnector\HTTP\Request
      */
-    public static function connector();
+    public static function connector(): Request;
     
     /**
      * @author Levente Otta <leventeotta@gmail.com>
@@ -31,8 +33,8 @@ interface Billingo
      * @param array $payload
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function get(string $uri, array $payload = []);
@@ -44,8 +46,8 @@ interface Billingo
      * @param array $payload
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function post(string $uri, array $payload = []);
@@ -57,8 +59,8 @@ interface Billingo
      * @param array $payload
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function put(string $uri, array $payload = []);
@@ -70,8 +72,8 @@ interface Billingo
      * @param array $payload
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function delete(string $uri, array $payload = []);

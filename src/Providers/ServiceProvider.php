@@ -8,7 +8,7 @@
 
 namespace Otisz\Billingo\Providers;
 
-use Billingo\API\Connector\HTTP\Request as BillingoConnector;
+use Otisz\BillingoConnector\HTTP\Request as BillingoConnector;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Otisz\Billingo\Billingo;
 use Otisz\Billingo\Contracts\Billingo as BillingoContract;
@@ -47,7 +47,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../../config/billingo.php', 'billingo');
 
-        $this->app->singleton(BillingoConnector::class, function () {
+        $this->app->singleton(BillingoConnector::class, static function () {
             return new BillingoConnector([
                 'public_key' => config('billingo.public_key'),
                 'private_key' => config('billingo.private_key'),
@@ -61,16 +61,16 @@ class ServiceProvider extends BaseServiceProvider
         $this->app->alias(Billingo::class, 'billingo');
     }
 
-    public function registerContracts()
+    public function registerContracts(): void
     {
         $this->app->bind(Billingo::class, BillingoContract::class);
         $this->app->bind(ClientsContract::class, ClientsService::class);
         $this->app->bind(InvoicesContract::class, InvoicesService::class);
     }
 
-    public function registerServices()
+    public function registerServices(): void
     {
-        $this->app->singleton(Billingo::class, function ($app) {
+        $this->app->singleton(Billingo::class, static function ($app) {
             return new Billingo($app[BillingoConnector::class]);
         });
 

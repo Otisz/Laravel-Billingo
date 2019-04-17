@@ -24,7 +24,7 @@
     "require": {
         "php": "^7.1",
         "illuminate/support": "^5.0",
-        "voov/billingo-api-connector": "^1.1"
+        "otisz/billingo-connector": "^1.2"
     },
     "autoload": {
         "psr-4": {
