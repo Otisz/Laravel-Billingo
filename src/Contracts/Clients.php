@@ -9,7 +9,7 @@
 namespace Otisz\Billingo\Contracts;
 
 /**
- * Class Clientable
+ * Interface Clients
  *
  * @author Levente Otta <leventeotta@gmail.com>
  *
@@ -29,8 +29,8 @@ interface Clients
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
      *
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Otisz\Billingo\Exceptions\TooManyResourcePerPageException
      */
@@ -46,8 +46,8 @@ interface Clients
      * @param array $clientPayload Information about the new client
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function create(array $clientPayload);
@@ -62,8 +62,8 @@ interface Clients
      * @param int|string $clientId Client id provided by Billingo
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function find($clientId);
@@ -79,8 +79,8 @@ interface Clients
      * @param array $clientPayload Information about the new client
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function update($clientId, array $clientPayload);
@@ -95,8 +95,8 @@ interface Clients
      * @param int|string $clientId Client id provided by Billingo
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function destroy($clientId);

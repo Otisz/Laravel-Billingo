@@ -7,7 +7,9 @@
 [Billingo](https://www.billingo.hu) API integration for Laravel.
 
 ## Roadmap
-- [x] Implement invoices service (2019. 03. 25)
+- [x] Implement invoices service (2019. 03. 25.)
+- [x] Refactor documents of services (2019. 03. 25.)
+- [x] Use custom connector package (2019. 04. 17.)
 - [ ] Implement products service
 - [ ] Implement expenses service
 - [ ] Implement recurring service
@@ -15,13 +17,12 @@
 - [ ] Implement payment methods service
 - [ ] Implement vat service
 - [ ] Implement currency service
-- [x] Refactor documents of services (2019. 03. 25)
 
 ## Dependencies
 
 - [PHP](https://secure.php.net): ^7.1
 - [illuminate/support](https://github.com/illuminate/support): ^5.0
-- [voov/billingo-api-connector](https://github.com/voov/Billingo-API-Connector): ^1.1
+- [otisz/billingo-api-connector](https://github.com/Otisz/Billingo-API-Connector): ^1.2
 
 ## Install
 

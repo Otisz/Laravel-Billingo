@@ -8,8 +8,9 @@
 
 namespace Otisz\Billingo;
 
-use Billingo\API\Connector\HTTP\Request as BillingoConnector;
+use Otisz\BillingoConnector\HTTP\Request as BillingoConnector;
 use Otisz\Billingo\Contracts\Billingo as BillingoContract;
+use Otisz\BillingoConnector\HTTP\Request;
 
 /**
  * Class Billingo
@@ -21,14 +22,14 @@ use Otisz\Billingo\Contracts\Billingo as BillingoContract;
 class Billingo implements BillingoContract
 {
     /**
-     * @var \Billingo\API\Connector\HTTP\Request
+     * @var \Otisz\BillingoConnector\HTTP\Request $connector
      */
     private static $connector;
 
     /**
-     * BillinGoblin constructor.
+     * Billingo constructor.
      *
-     * @param \Billingo\API\Connector\HTTP\Request $connector
+     * @param \Otisz\BillingoConnector\HTTP\Request $connector
      */
     public function __construct(BillingoConnector $connector)
     {
@@ -36,25 +37,15 @@ class Billingo implements BillingoContract
     }
 
     /**
-     * @author Levente Otta <leventeotta@gmail.com>
-     *
-     * @return \Billingo\API\Connector\HTTP\Request
+     * @inheritDoc
      */
-    public static function connector()
+    public static function connector(): Request
     {
         return self::$connector;
     }
 
     /**
-     * @author Levente Otta <leventeotta@gmail.com>
-     *
-     * @param string $uri
-     * @param array $payload
-     *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @inheritDoc
      */
     public static function get(string $uri, array $payload = [])
     {

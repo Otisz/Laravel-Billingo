@@ -18,12 +18,12 @@ namespace Otisz\Billingo\Exceptions;
 class TooManyResourcePerPageException extends \Exception
 {
     /**
-     * @var string
+     * @var string $message
      */
     protected $message = 'There should be no more than 50 resources requested per page.';
 
     /**
-     * @var int
+     * @var int $code
      */
     protected $code = 400;
 }

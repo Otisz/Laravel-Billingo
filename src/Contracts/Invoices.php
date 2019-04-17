@@ -9,7 +9,7 @@
 namespace Otisz\Billingo\Contracts;
 
 /**
- * Class Invoices
+ * Interface Invoices
  *
  * @author Levente Otta <leventeotta@gmail.com>
  *
@@ -27,8 +27,8 @@ interface Invoices
      * @param array $filters
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function query(array $filters);
@@ -44,8 +44,8 @@ interface Invoices
      * @param int $maxPerPage
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Otisz\Billingo\Exceptions\TooManyResourcePerPageException
      */
@@ -61,8 +61,8 @@ interface Invoices
      * @param array $invoicePayload
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function create(array $invoicePayload);
@@ -77,8 +77,8 @@ interface Invoices
      * @param int|string $invoiceId
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function find($invoiceId);
@@ -94,8 +94,8 @@ interface Invoices
      * @param bool $asURL
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface|string
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function accessCode($invoiceId, bool $asURL = false);
@@ -110,8 +110,8 @@ interface Invoices
      * @param int|string $invoiceId
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function proformaToNormal($invoiceId);
@@ -142,8 +142,8 @@ interface Invoices
      * @param int|string $invoiceId
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function cancel($invoiceId);
@@ -158,8 +158,8 @@ interface Invoices
      * @param int|string $invoiceId
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function send($invoiceId);
@@ -175,8 +175,8 @@ interface Invoices
      * @param array $payload
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function pay($invoiceId, array $payload);
@@ -191,8 +191,8 @@ interface Invoices
      * @param int|string $invoiceId
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function undoPayment($invoiceId);
@@ -205,8 +205,8 @@ interface Invoices
      * @see https://billingo.readthedocs.io/en/latest/invoices/#get-the-available-invoice-blocks
      *
      * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Billingo\API\Connector\Exceptions\JSONParseException
-     * @throws \Billingo\API\Connector\Exceptions\RequestErrorException
+     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
+     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function availableBlocks();
