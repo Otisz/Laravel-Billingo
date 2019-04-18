@@ -8,9 +8,8 @@
 
 namespace Otisz\Billingo;
 
-use Otisz\BillingoConnector\HTTP\Request as BillingoConnector;
+use Otisz\BillingoConnector\Connector;
 use Otisz\Billingo\Contracts\Billingo as BillingoContract;
-use Otisz\BillingoConnector\HTTP\Request;
 
 /**
  * Class Billingo
@@ -22,16 +21,16 @@ use Otisz\BillingoConnector\HTTP\Request;
 class Billingo implements BillingoContract
 {
     /**
-     * @var \Otisz\BillingoConnector\HTTP\Request $connector
+     * @var \Otisz\BillingoConnector\Connector $connector
      */
     private static $connector;
 
     /**
      * Billingo constructor.
      *
-     * @param \Otisz\BillingoConnector\HTTP\Request $connector
+     * @param \Otisz\BillingoConnector\Connector $connector
      */
-    public function __construct(BillingoConnector $connector)
+    public function __construct(Connector $connector)
     {
         self::$connector = $connector;
     }
@@ -39,7 +38,7 @@ class Billingo implements BillingoContract
     /**
      * @inheritDoc
      */
-    public static function connector(): Request
+    public static function connector(): Connector
     {
         return self::$connector;
     }
