@@ -8,7 +8,7 @@
 
 namespace Otisz\Billingo\Contracts;
 
-use Otisz\BillingoConnector\HTTP\Request;
+use Otisz\BillingoConnector\Connector;
 
 /**
  * Interface Billingo
@@ -22,9 +22,9 @@ interface Billingo
     /**
      * @author Levente Otta <leventeotta@gmail.com>
      *
-     * @return \Otisz\BillingoConnector\HTTP\Request
+     * @return \Otisz\BillingoConnector\Connector
      */
-    public static function connector(): Request;
+    public static function connector(): Connector;
     
     /**
      * @author Levente Otta <leventeotta@gmail.com>

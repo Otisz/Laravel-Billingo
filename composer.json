@@ -24,7 +24,7 @@
     "require": {
         "php": "^7.1",
         "illuminate/support": "^5.0",
-        "otisz/billingo-connector": "^1.2"
+        "otisz/billingo-connector": "^1.3"
     },
     "autoload": {
         "psr-4": {
@@ -37,7 +37,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Otisz\\Billingo\\Providers\\ServiceProvider"
+                "Otisz\\Billingo\\BillingoServiceProvider"
             ],
             "aliases": {
                 "Billingo": "Otisz\\Billingo\\Facades\\Billingo"

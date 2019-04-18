@@ -22,7 +22,7 @@
 
 - [PHP](https://secure.php.net): ^7.1
 - [illuminate/support](https://github.com/illuminate/support): ^5.0
-- [otisz/billingo-api-connector](https://github.com/Otisz/Billingo-API-Connector): ^1.2
+- [otisz/billingo-api-connector](https://github.com/Otisz/Billingo-API-Connector): ^1.3
 
 ## Install
 
@@ -35,7 +35,7 @@ In Laravel 5.5 or above the service provider will automatically get registered. 
 ```php
 'providers' => [
     ...
-    Otisz\Billingo\Providers\ServiceProvider::class,
+    Otisz\Billingo\BillingoServiceProvider::class,
     ...
 ],
 
@@ -48,7 +48,7 @@ In Laravel 5.5 or above the service provider will automatically get registered. 
 
 You can publish the config file with:
 ```bash
-$ php artisan vendor:publish --tag=Billingo
+$ php artisan vendor:publish --provider="Otisz\Billingo\BillingoServiceProvider" --tag=config
 ```
 
 When published, [the `config/billingo.php` config](config/billingo.php) file contains:

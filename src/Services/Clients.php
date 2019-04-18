@@ -8,7 +8,7 @@
 
 namespace Otisz\Billingo\Services;
 
-use Otisz\Billingo\Billingo;
+use Illuminate\Support\Facades\App;
 use Otisz\Billingo\Contracts\Clients as ClientInterface;
 use Otisz\Billingo\Exceptions\TooManyResourcePerPageException;
 
@@ -35,7 +35,7 @@ class Clients implements ClientInterface
             'max_per_page' => $maxPerPage,
         ];
 
-        return Billingo::get('clients', $options);
+        return App::make('billingo')::get('clients', $options);
     }
 
     /**
@@ -43,7 +43,7 @@ class Clients implements ClientInterface
      */
     public static function create(array $clientPayload)
     {
-        return Billingo::post('clients', $clientPayload);
+        return App::make('billingo')::post('clients', $clientPayload);
     }
 
     /**
@@ -51,7 +51,7 @@ class Clients implements ClientInterface
      */
     public static function find($clientId)
     {
-        return Billingo::get("clients/{$clientId}");
+        return App::make('billingo')::get("clients/{$clientId}");
     }
 
     /**
@@ -59,7 +59,7 @@ class Clients implements ClientInterface
      */
     public static function update($clientId, array $clientPayload)
     {
-        return Billingo::put("clients/{$clientId}", $clientPayload);
+        return App::make('billingo')::put("clients/{$clientId}", $clientPayload);
     }
 
     /**
@@ -67,6 +67,6 @@ class Clients implements ClientInterface
      */
     public static function destroy($clientId)
     {
-        return Billingo::delete("clients/{$clientId}");
+        return App::make('billingo')::delete("clients/{$clientId}");
     }
 }
