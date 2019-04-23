@@ -1,5 +1,20 @@
 # Release Notes
 
+## [v0.4.1 (2019-04-23)](https://github.com/Otisz/Laravel-Billingo/compare/v0.4.0...v0.4.1)
+
+### Changed
+- Clean up code duplication ([4f5484e](https://github.com/Otisz/Laravel-Billingo/commit/4f5484e258fadabaa916af2424a4eed4f3400a69))
+- Update docs ([5e5abaf](https://github.com/Otisz/Laravel-Billingo/commit/5e5abafc70e84ec399c7e9975302feb7385dc891))
+
+## [v0.4.0 (2019-04-18)](https://github.com/Otisz/Laravel-Billingo/compare/v0.3.0...v0.4.0)
+
+### Added
+- Added custom connector package ([c5bc930](https://github.com/Otisz/Laravel-Billingo/commit/c5bc9307564dc09b44bac7746f9e3acdaf8bb9b0))
+
+### Changed
+- Rename `Otisz\Billingo\Providers\ServiceProvider` to `Otisz\BillingoServiceProvider` ([d348de5](https://github.com/Otisz/Laravel-Billingo/commit/d348de5d20c40cb5294ae979674818aebf283671))
+- Use billingo facade in services ([d348de5](https://github.com/Otisz/Laravel-Billingo/commit/d348de5d20c40cb5294ae979674818aebf283671))
+
 ## [v0.3.0 (2019-03-23)](https://github.com/Otisz/Laravel-Billingo/compare/v0.2.1...v0.3.0)
 
 ### Added
