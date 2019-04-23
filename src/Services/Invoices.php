@@ -95,13 +95,15 @@ class Invoices implements InvoicesContract
      */
     public static function download($invoiceId, $file = null, bool $asResponse = false)
     {
+        $downloadable = App::make('billingo')::connector()->downloadInvoice($invoiceId, $file);
+        
         if ($asResponse) {
-            return Response::make(App::make('billingo')::connector()->downloadInvoice($invoiceId, $file), 200, [
+            return Response::make($downloadable, 200, [
                 'Content-Type' => 'application/pdf',
             ]);
         }
 
-        return App::make('billingo')::connector()->downloadInvoice($invoiceId, $file);
+        return $downloadable;
     }
 
     /**
