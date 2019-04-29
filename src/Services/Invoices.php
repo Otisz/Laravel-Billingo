@@ -54,9 +54,6 @@ class Invoices implements InvoicesContract
      */
     public static function create(array $invoicePayload)
     {
-        // Just to be sure.
-        $invoicePayload['block_uid'] = 0;
-
         return App::make('billingo')::post('invoices', $invoicePayload);
     }
 

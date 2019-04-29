@@ -1,5 +1,10 @@
 # Release Notes
 
+## [v0.4.2 (2019-04-29)](https://github.com/Otisz/Laravel-Billingo/compare/v0.4.1...v0.4.2)
+
+### Fixed
+- Remove forced block id ([7e9ec2](https://github.com/Otisz/Laravel-Billingo/commit/7e9ec213d2350ecc6048ed886363eefac8b98c64))
+
 ## [v0.4.1 (2019-04-23)](https://github.com/Otisz/Laravel-Billingo/compare/v0.4.0...v0.4.1)
 
 ### Changed
