@@ -10,19 +10,19 @@
 - [x] Implement invoices service (2019. 03. 25.)
 - [x] Refactor documents of services (2019. 03. 25.)
 - [x] Use custom connector package (2019. 04. 17.)
-- [ ] Implement products service
-- [ ] Implement expenses service
-- [ ] Implement recurring service
-- [ ] Implement bank accounts service
-- [ ] Implement payment methods service
-- [ ] Implement vat service
-- [ ] Implement currency service
+- [x] Implement products service (2019. 05. 31.)
+- [x] Implement expenses service (2019. 05. 31.)
+- [x] Implement recurring service (2019. 05. 31.)
+- [x] Implement bank accounts service (2019. 05. 31.)
+- [x] Implement payment methods service (2019. 05. 31.)
+- [x] Implement vat service (2019. 05. 31.)
+- [x] Implement currency service (2019. 05. 31.)
+- [ ] Add further docs
 
 ## Dependencies
 
 - [PHP](https://secure.php.net): ^7.1
 - [illuminate/support](https://github.com/illuminate/support): ^5.0
-- [otisz/billingo-api-connector](https://github.com/Otisz/Billingo-API-Connector): ^1.3
 
 ## Install
 
@@ -54,6 +54,8 @@ $ php artisan vendor:publish --provider="Otisz\Billingo\BillingoServiceProvider"
 When published, [the `config/billingo.php` config](config/billingo.php) file contains:
 
 ```php
+<?php
+
 return [
     /*
      * The public key for Billingo
@@ -73,18 +75,15 @@ Before you can use the Billingo service provider you have configure it with your
     
 ## Usage
 
-### Clients
-[Check out Clients.md](docs/Clients.md)
-
-### Invoices
-[Check out Invoices.md](docs/Invoices.md)
-
-### Non implemented API features
-
-As you can see in the roadmap, there are some API endpoints that are not yet supported by the package. \
-These will be implemented later in minor versions.
-
-If you need any of these, feel free to use Billingo facade.
+- Clients (outdated) [Check out Clients.md](docs/Clients.md)
+- Invoices (outdated) [Check out Invoices.md](docs/Invoices.md)
+- Products (coming soon)
+- Bank accounts (coming soon)
+- Currency (coming soon)
+- Expenses (coming soon)
+- Payment methods (coming soon)
+- Recurring (coming soon)
+- Vat (coming soon)
 
 ```php
 \Billingo::get(string $uri, array $payload = []);
