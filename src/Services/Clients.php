@@ -8,26 +8,23 @@
 
 namespace Otisz\Billingo\Services;
 
-use Illuminate\Support\Facades\App;
-use Otisz\Billingo\Contracts\Clients as ClientInterface;
-use Otisz\Billingo\Exceptions\TooManyResourcePerPageException;
+use Otisz\Billingo\Contracts\Clients as Contract;
+use Otisz\Billingo\Facades\Billingo;
 
 /**
  * Class Clients
  *
- * @author Levente Otta <leventeotta@gmail.com>
- *
  * @package Otisz\Billingo\Services
  */
-class Clients implements ClientInterface
+class Clients implements Contract
 {
     /**
      * @inheritdoc
      */
-    public static function all(int $page = 1, int $maxPerPage = 20)
+    public function all(int $page = 1, int $maxPerPage = 20)
     {
         if ($maxPerPage > 50) {
-            throw new TooManyResourcePerPageException;
+            $maxPerPage = 50;
         }
 
         $options = [
@@ -35,38 +32,38 @@ class Clients implements ClientInterface
             'max_per_page' => $maxPerPage,
         ];
 
-        return App::make('billingo')::get('clients', $options);
+        return Billingo::get('clients', $options);
     }
 
     /**
      * @inheritdoc
      */
-    public static function create(array $clientPayload)
+    public function create(array $clientPayload)
     {
-        return App::make('billingo')::post('clients', $clientPayload);
+        return Billingo::post('clients', $clientPayload);
     }
 
     /**
      * @inheritdoc
      */
-    public static function find($clientId)
+    public function find(int $clientId)
     {
-        return App::make('billingo')::get("clients/{$clientId}");
+        return Billingo::get("clients/{$clientId}");
     }
 
     /**
      * @inheritdoc
      */
-    public static function update($clientId, array $clientPayload)
+    public function update(int $clientId, array $clientPayload)
     {
-        return App::make('billingo')::put("clients/{$clientId}", $clientPayload);
+        return Billingo::put("clients/{$clientId}", $clientPayload);
     }
 
     /**
      * @inheritdoc
      */
-    public static function destroy($clientId)
+    public function destroy(int $clientId)
     {
-        return App::make('billingo')::delete("clients/{$clientId}");
+        return Billingo::delete("clients/{$clientId}");
     }
 }

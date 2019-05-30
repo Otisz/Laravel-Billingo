@@ -11,8 +11,6 @@ namespace Otisz\Billingo\Contracts;
 /**
  * Interface Clients
  *
- * @author Levente Otta <leventeotta@gmail.com>
- *
  * @package Otisz\Billingo\Contracts
  */
 interface Clients
@@ -20,84 +18,72 @@ interface Clients
     /**
      * Get a listing of clients
      *
-     * @author Levente Otta <leventeotta@gmail.com>
-     *
-     * @see https://billingo.readthedocs.io/en/latest/clients/#list-of-clients
+     * @example https://billingo.readthedocs.io/en/latest/clients/#list-of-clients
      *
      * @param int $page Show the given page
      * @param int $maxPerPage Sets the maximum number of results to return. Absolute maximum is 50!
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @return \Psr\Http\Message\ResponseInterface|mixed
      *
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Otisz\Billingo\Exceptions\TooManyResourcePerPageException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function all(int $page = 1, int $maxPerPage = 20);
+    public function all(int $page = 1, int $maxPerPage = 20);
 
     /**
      * Create a new client
      *
-     * @author Levente Otta <leventeotta@gmail.com>
-     *
-     * @see https://billingo.readthedocs.io/en/latest/clients/#create-a-client
+     * @example https://billingo.readthedocs.io/en/latest/clients/#create-a-client
      *
      * @param array $clientPayload Information about the new client
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
+     * @return \Psr\Http\Message\ResponseInterface|mixed
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function create(array $clientPayload);
+    public function create(array $clientPayload);
 
     /**
      * Find a specific client
      *
-     * @author Levente Otta <leventeotta@gmail.com>
+     * @example https://billingo.readthedocs.io/en/latest/clients/#list-of-clients
      *
-     * @see https://billingo.readthedocs.io/en/latest/clients/#list-of-clients
+     * @param int $clientId Client id provided by Billingo
      *
-     * @param int|string $clientId Client id provided by Billingo
+     * @return \Psr\Http\Message\ResponseInterface|mixed
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function find($clientId);
+    public function find(int $clientId);
 
     /**
      * Update a specified client
      *
-     * @author Levente Otta <leventeotta@gmail.com>
+     * @example https://billingo.readthedocs.io/en/latest/clients/#update-a-client
      *
-     * @see https://billingo.readthedocs.io/en/latest/clients/#update-a-client
-     *
-     * @param int|string $clientId Client id provided by Billingo
+     * @param int $clientId Client id provided by Billingo
      * @param array $clientPayload Information about the new client
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
+     * @return \Psr\Http\Message\ResponseInterface|mixed
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function update($clientId, array $clientPayload);
+    public function update(int $clientId, array $clientPayload);
 
     /**
      * Delete an existing client
      *
-     * @author Levente Otta <leventeotta@gmail.com>
+     * @example https://billingo.readthedocs.io/en/latest/clients/#delete-client
      *
-     * @see https://billingo.readthedocs.io/en/latest/clients/#delete-client
+     * @param int $clientId Client id provided by Billingo
      *
-     * @param int|string $clientId Client id provided by Billingo
+     * @return \Psr\Http\Message\ResponseInterface|mixed
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function destroy($clientId);
+    public function destroy(int $clientId);
 }
