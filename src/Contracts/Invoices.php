@@ -11,8 +11,6 @@ namespace Otisz\Billingo\Contracts;
 /**
  * Interface Invoices
  *
- * @author Levente Otta <leventeotta@gmail.com>
- *
  * @package Otisz\Billingo\Contracts
  */
 interface Invoices
@@ -20,194 +18,169 @@ interface Invoices
     /**
      * Search invoices.
      *
-     * @author Levente Otta <leventeotta@gmail.com>
-     *
-     * @see https://billingo.readthedocs.io/en/latest/query/
+     * @example https://billingo.readthedocs.io/en/latest/query/
      *
      * @param array $filters
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
+     * @return \Psr\Http\Message\ResponseInterface|mixed
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function query(array $filters);
+    public function query(array $filters);
 
     /**
      * Get a listing of invoices
      *
-     * @author Levente Otta <leventeotta@gmail.com>
-     *
-     * @see https://billingo.readthedocs.io/en/latest/invoices/#invoices
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#invoices
      *
      * @param int $page
      * @param int $maxPerPage
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
+     * @return \Psr\Http\Message\ResponseInterface|mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Otisz\Billingo\Exceptions\TooManyResourcePerPageException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function all(int $page = 1, $maxPerPage = 20);
+    public function all(int $page = 1, $maxPerPage = 20);
 
     /**
      * Create a new invoice
      *
-     * @author Levente Otta <leventeotta@gmail.com>
-     *
-     * @see https://billingo.readthedocs.io/en/latest/invoices/#save-a-new-invoice
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#save-a-new-invoice
      *
      * @param array $invoicePayload
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
+     * @return \Psr\Http\Message\ResponseInterface|mixed
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function create(array $invoicePayload);
+    public function create(array $invoicePayload);
 
     /**
      * Find a specified client
      *
-     * @author Levente Otta <leventeotta@gmail.com>
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#invoices
      *
-     * @see https://billingo.readthedocs.io/en/latest/invoices/#invoices
+     * @param int $invoiceId
      *
-     * @param int|string $invoiceId
+     * @return \Psr\Http\Message\ResponseInterface|mixed
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function find($invoiceId);
+    public function find(int $invoiceId);
 
     /**
      * Create download link
      *
-     * @author Levente Otta <leventeotta@gmail.com>
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#create-download-link
      *
-     * @see https://billingo.readthedocs.io/en/latest/invoices/#create-download-link
-     *
-     * @param int|string $invoiceId
+     * @param int $invoiceId
      * @param bool $asURL
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface|string
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
+     * @return \Psr\Http\Message\ResponseInterface|mixed|string
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function accessCode($invoiceId, bool $asURL = false);
+    public function accessCode(int $invoiceId, bool $asURL = false);
 
     /**
      * Generate normal invoice from proforma invoice
      *
-     * @author Levente Otta <leventeotta@gmail.com>
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#generate-normal-invoice-from-proforma-invoice
      *
-     * @see https://billingo.readthedocs.io/en/latest/invoices/#generate-normal-invoice-from-proforma-invoice
+     * @param int $invoiceId
      *
-     * @param int|string $invoiceId
+     * @return \Psr\Http\Message\ResponseInterface|mixed
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function proformaToNormal($invoiceId);
+    public function proformaToNormal(int $invoiceId);
 
     /**
      * Download invoice
      *
-     * @author Levente Otta <leventeotta@gmail.com>
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#download-invoice
      *
-     * @see https://billingo.readthedocs.io/en/latest/invoices/#download-invoice
-     *
-     * @param int|string $invoiceId
+     * @param int $invoiceId
      * @param resource|string|null $file
      * @param bool $asResponse
      *
      * @return \Illuminate\Http\Response|\Psr\Http\Message\StreamInterface|string|null
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function download($invoiceId, $file = null, bool $asResponse = false);
+    public function download(int $invoiceId, $file = null, bool $asResponse = false);
 
     /**
      * Cancel the invoice
      *
-     * @author Levente Otta <leventeotta@gmail.com>
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#cancel-the-invoice
      *
-     * @see https://billingo.readthedocs.io/en/latest/invoices/#cancel-the-invoice
+     * @param int $invoiceId
      *
-     * @param int|string $invoiceId
+     * @return \Psr\Http\Message\ResponseInterface|mixed
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function cancel($invoiceId);
+    public function cancel(int $invoiceId);
 
     /**
      * Send the invoice to the client email address
      *
-     * @author Levente Otta <leventeotta@gmail.com>
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#send-the-invoice-to-the-client-email-address
      *
-     * @see https://billingo.readthedocs.io/en/latest/invoices/#send-the-invoice-to-the-client-email-address
+     * @param int $invoiceId
      *
-     * @param int|string $invoiceId
+     * @return \Psr\Http\Message\ResponseInterface|mixed
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function send($invoiceId);
+    public function send(int $invoiceId);
 
     /**
      * Pay the full or partial amount of the invoice
      *
-     * @author Levente Otta <leventeotta@gmail.com>
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#pay-the-full-or-partial-amount-of-the-invoice
      *
-     * @see https://billingo.readthedocs.io/en/latest/invoices/#pay-the-full-or-partial-amount-of-the-invoice
-     *
-     * @param int|string $invoiceId
+     * @param int $invoiceId
      * @param array $payload
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
+     * @return \Psr\Http\Message\ResponseInterface|mixed
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function pay($invoiceId, array $payload);
+    public function pay(int $invoiceId, array $payload);
 
     /**
      * Undo payment of the invoice
      *
-     * @author Levente Otta <leventeotta@gmail.com>
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#undo-payment-of-the-invoice
      *
-     * @see https://billingo.readthedocs.io/en/latest/invoices/#undo-payment-of-the-invoice
+     * @param int $invoiceId
      *
-     * @param int|string $invoiceId
+     * @return \Psr\Http\Message\ResponseInterface|mixed
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function undoPayment($invoiceId);
+    public function undoPayment(int $invoiceId);
 
     /**
      * Get the available invoice blocks
      *
-     * @author Levente Otta <leventeotta@gmail.com>
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#get-the-available-invoice-blocks
      *
-     * @see https://billingo.readthedocs.io/en/latest/invoices/#get-the-available-invoice-blocks
-     *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \Otisz\BillingoConnector\Exceptions\JSONParseException
-     * @throws \Otisz\BillingoConnector\Exceptions\RequestErrorException
+     * @return \Psr\Http\Message\ResponseInterface|mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public static function availableBlocks();
+    public function availableBlocks();
 }

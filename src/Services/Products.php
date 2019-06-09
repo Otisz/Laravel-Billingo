@@ -8,15 +8,15 @@
 
 namespace Otisz\Billingo\Services;
 
-use Otisz\Billingo\Contracts\Clients as Contract;
+use Otisz\Billingo\Contracts\Products as Contract;
 use Otisz\Billingo\Facades\Billingo;
 
 /**
- * Class Clients
+ * Class Products
  *
  * @package Otisz\Billingo\Services
  */
-class Clients implements Contract
+class Products implements Contract
 {
     /**
      * @inheritdoc
@@ -32,38 +32,38 @@ class Clients implements Contract
             'max_per_page' => $maxPerPage,
         ];
 
-        return Billingo::get('clients', $options);
+        return Billingo::get('products', $options);
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
-    public function create(array $clientPayload)
+    public function create(array $productPayload)
     {
-        return Billingo::post('clients', $clientPayload);
+        return Billingo::post('products', $productPayload);
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
-    public function find(int $clientId)
+    public function find(int $productId)
     {
-        return Billingo::get("clients/{$clientId}");
+        return Billingo::get("products/{$productId}");
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
-    public function update(int $clientId, array $clientPayload)
+    public function update(int $productId, array $productPayload)
     {
-        return Billingo::put("clients/{$clientId}", $clientPayload);
+        return Billingo::put("products/{$productId}", $productPayload);
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
-    public function destroy(int $clientId)
+    public function destroy(int $productId)
     {
-        return Billingo::delete("clients/{$clientId}");
+        return Billingo::delete("products/{$productId}");
     }
 }

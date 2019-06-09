@@ -3,30 +3,29 @@
 ## List of clients:
 [Check out the official documentation](https://billingo.readthedocs.io/en/latest/clients/#list-of-clients)
 ```php
-\Otisz\Billingo\Services\Clients::all(int $page = 1, int $maxPerPage = 20)
+\Billingo::clients()->all(int $page = 1, int $maxPerPage = 20)
 ```
-**Note:** If `$maxPerPage` is greater than 50, then `\Otisz\Billingo\Exceptions\TooManyResourcePerPageException::class` will be thrown.
 
 ## Create a client:
 [Check out the official documentation](https://billingo.readthedocs.io/en/latest/clients/#create-a-client)
 ```php
-\Otisz\Billingo\Services\Clients::create(array $clientPayload)
+\Billingo::clients()->create(array $clientPayload)
 ```
 
 ## Find a client:
 [Check out the official documentation](https://billingo.readthedocs.io/en/latest/clients/#list-of-clients)
 ```php
-\Otisz\Billingo\Services\Clients::find(int|string $clientId)
+\Billingo::clients()->find(int $clientId)
 ```
 
 ## Update a client:
 [Check out the official documentation](https://billingo.readthedocs.io/en/latest/clients/#update-a-client)
 ```php
-\Otisz\Billingo\Services\Clients::update(int|string $clientId, array $clientPayload)
+\Billingo::clients()->update(int $clientId, array $clientPayload)
 ```
 
 ## Delete a client:
 [Check out the official documentation](https://billingo.readthedocs.io/en/latest/clients/#delete-client)
 ```php
-\Otisz\Billingo\Services\Clients::destroy(int|string $clientId)
+\Billingo::clients()->destroy(int $clientId)
 ```

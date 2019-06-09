@@ -10,35 +10,32 @@ namespace Otisz\Billingo\Services;
 
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Response;
-use Otisz\Billingo\Contracts\Invoices as InvoicesContract;
-use Otisz\Billingo\Exceptions\TooManyResourcePerPageException;
+use Otisz\Billingo\Contracts\Invoices as Contract;
+use Otisz\Billingo\Facades\Billingo;
 
 /**
  * Class Invoices
  *
- * @author Levente Otta <leventeotta@gmail.com>
- *
  * @package Otisz\Billingo\Services
  */
-class Invoices implements InvoicesContract
+class Invoices implements Contract
 {
     /**
      * @inheritdoc
      */
-    public static function query(array $filters)
+    public function query(array $filters)
     {
-        return App::make('billingo')::get('invoices/query', $filters);
+        return Billingo::get('invoices/query', $filters);
     }
 
     /**
      * @inheritdoc
      */
-    public static function all(int $page = 1, $maxPerPage = 20)
+    public function all(int $page = 1, $maxPerPage = 20)
     {
         if ($maxPerPage > 50) {
-            throw new TooManyResourcePerPageException;
+            $maxPerPage = 50;
         }
 
         $options = [
@@ -46,31 +43,31 @@ class Invoices implements InvoicesContract
             'max_per_page' => $maxPerPage,
         ];
 
-        return App::make('billingo')::get('invoices', $options);
+        return Billingo::get('invoices', $options);
     }
 
     /**
      * @inheritdoc
      */
-    public static function create(array $invoicePayload)
+    public function create(array $invoicePayload)
     {
-        return App::make('billingo')::post('invoices', $invoicePayload);
+        return Billingo::post('invoices', $invoicePayload);
     }
 
     /**
      * @inheritdoc
      */
-    public static function find($invoiceId)
+    public function find(int $invoiceId)
     {
-        return App::make('billingo')::get("invoices/{$invoiceId}");
+        return Billingo::get("invoices/{$invoiceId}");
     }
 
     /**
      * @inheritdoc
      */
-    public static function accessCode($invoiceId, bool $asURL = false)
+    public function accessCode(int $invoiceId, bool $asURL = false)
     {
-        $response = App::make('billingo')::get("invoices/{$invoiceId}/code");
+        $response = Billingo::get("invoices/{$invoiceId}/code");
 
         if ($asURL) {
             return "https://www.billingo.hu/access/c:{$response['code']}";
@@ -82,17 +79,17 @@ class Invoices implements InvoicesContract
     /**
      * @inheritdoc
      */
-    public static function proformaToNormal($invoiceId)
+    public function proformaToNormal(int $invoiceId)
     {
-        return App::make('billingo')::get("invoices/{$invoiceId}/generate");
+        return Billingo::get("invoices/{$invoiceId}/generate");
     }
 
     /**
      * @inheritdoc
      */
-    public static function download($invoiceId, $file = null, bool $asResponse = false)
+    public function download(int $invoiceId, $file = null, bool $asResponse = false)
     {
-        $downloadable = App::make('billingo')::connector()->downloadInvoice($invoiceId, $file);
+        $downloadable = Billingo::connector()->downloadInvoice($invoiceId, $file);
         
         if ($asResponse) {
             return Response::make($downloadable, 200, [
@@ -106,44 +103,44 @@ class Invoices implements InvoicesContract
     /**
      * @inheritdoc
      */
-    public static function cancel($invoiceId)
+    public function cancel(int $invoiceId)
     {
-        return App::make('billingo')::get("invoices/{$invoiceId}/cancel");
+        return Billingo::get("invoices/{$invoiceId}/cancel");
     }
 
     /**
      * @inheritdoc
      */
-    public static function send($invoiceId)
+    public function send(int $invoiceId)
     {
-        return App::make('billingo')::get("invoices/{$invoiceId}/send");
+        return Billingo::get("invoices/{$invoiceId}/send");
     }
 
     /**
      * @inheritdoc
      */
-    public static function pay($invoiceId, array $payload)
+    public function pay(int $invoiceId, array $payload)
     {
         if (!Arr::has($payload, 'date')) {
             $payload = Arr::add($payload, 'date', Carbon::today()->toDateString());
         }
 
-        return App::make('billingo')::get("invoices/{$invoiceId}/pay", $payload);
+        return Billingo::get("invoices/{$invoiceId}/pay", $payload);
     }
 
     /**
      * @inheritdoc
      */
-    public static function undoPayment($invoiceId)
+    public function undoPayment(int $invoiceId)
     {
-        return App::make('billingo')::delete("invoices/{$invoiceId}/pay");
+        return Billingo::delete("invoices/{$invoiceId}/pay");
     }
 
     /**
      * @inheritdoc
      */
-    public static function availableBlocks()
+    public function availableBlocks()
     {
-        return App::make('billingo')::get('invoices/blocks');
+        return Billingo::get('invoices/blocks');
     }
 }

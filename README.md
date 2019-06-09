@@ -10,19 +10,19 @@
 - [x] Implement invoices service (2019. 03. 25.)
 - [x] Refactor documents of services (2019. 03. 25.)
 - [x] Use custom connector package (2019. 04. 17.)
-- [ ] Implement products service
-- [ ] Implement expenses service
-- [ ] Implement recurring service
-- [ ] Implement bank accounts service
-- [ ] Implement payment methods service
-- [ ] Implement vat service
-- [ ] Implement currency service
+- [x] Implement products service (2019. 06. 09.)
+- [x] Implement expenses service (2019. 06. 09.)
+- [x] Implement recurring service (2019. 06. 09.)
+- [x] Implement bank accounts service (2019. 06. 09.)
+- [x] Implement payment methods service (2019. 06. 09.)
+- [x] Implement vat service (2019. 06. 09.)
+- [x] Implement currency service (2019. 06. 09.)
+- [ ] Add further docs
 
 ## Dependencies
 
 - [PHP](https://secure.php.net): ^7.1
 - [illuminate/support](https://github.com/illuminate/support): ^5.0
-- [otisz/billingo-api-connector](https://github.com/Otisz/Billingo-API-Connector): ^1.3
 
 ## Install
 
@@ -54,6 +54,8 @@ $ php artisan vendor:publish --provider="Otisz\Billingo\BillingoServiceProvider"
 When published, [the `config/billingo.php` config](config/billingo.php) file contains:
 
 ```php
+<?php
+
 return [
     /*
      * The public key for Billingo
@@ -73,20 +75,19 @@ Before you can use the Billingo service provider you have configure it with your
     
 ## Usage
 
-### Clients
-[Check out Clients.md](docs/Clients.md)
-
-### Invoices
-[Check out Invoices.md](docs/Invoices.md)
-
-### Non implemented API features
-
-As you can see in the roadmap, there are some API endpoints that are not yet supported by the package. \
-These will be implemented later in minor versions.
-
-If you need any of these, feel free to use Billingo facade.
+- Clients [Check out Clients.md](docs/Clients.md)
+- Invoices [Check out Invoices.md](docs/Invoices.md)
+- Products (doc is coming soon)
+- Bank accounts (doc is coming soon)
+- Currency (doc is coming soon)
+- Expenses (doc is coming soon)
+- Payment methods (doc is coming soon)
+- Recurring (doc is coming soon)
+- Vat (doc is coming soon)
 
 ```php
+\Billingo::connector();
+
 \Billingo::get(string $uri, array $payload = []);
 
 \Billingo::post(string $uri, array $payload = []);
@@ -94,6 +95,24 @@ If you need any of these, feel free to use Billingo facade.
 \Billingo::put(string $uri, array $payload = []);
 
 \Billingo::delete(string $uri, array $payload = []);
+
+\Billingo::clients();
+
+\Billingo::invoices();
+
+\Billingo::products();
+
+\Billingo::bankAccounts();
+
+\Billingo::currency();
+
+\Billingo::expenses();
+
+\Billingo::paymentMethods();
+
+\Billingo::recurring();
+
+\Billingo::vat();
 ```
     
 ## Testing
@@ -104,13 +123,13 @@ $ composer lint
 
 ## Contributing
 
-### Security
+### Security Vulnerabilities
 
-If you discover any security-related issues, please email [leventeotta@gmail.com](mailto:leventeotta@gmail.com) instead of using the issue tracker.
+If you discover any security-related issues, please email [leventeotta@gmail.com](mailto:leventeotta@gmail.com) instead of using the issue tracker. All security vulnerabilities will be promptly addressed.
 
 ## Licence
 
-The MIT Licence (MIT). Please see [License File](LICENSE.md) for more information.
+The Laravel Billingo package is open-source software licensed under the [MIT license](LICENSE.md).
 
 [shield-packagist]: https://img.shields.io/packagist/v/otisz/laravel-billingo.svg?style=flat-square
 [shield-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square

@@ -9,16 +9,16 @@
 namespace Otisz\Billingo\Contracts;
 
 /**
- * Interface Clients
+ * Interface Products
  *
  * @package Otisz\Billingo\Contracts
  */
-interface Clients
+interface Products
 {
     /**
-     * Get a listing of clients
+     * Get a listing of products
      *
-     * @example https://billingo.readthedocs.io/en/latest/clients/#list-of-clients
+     * @example https://billingo.readthedocs.io/en/latest/products/#list-of-products
      *
      * @param int $page Show the given page
      * @param int $maxPerPage Sets the maximum number of results to return. Absolute maximum is 50!
@@ -31,59 +31,59 @@ interface Clients
     public function all(int $page = 1, int $maxPerPage = 20);
 
     /**
-     * Create a new client
+     * Create a new product
      *
-     * @example https://billingo.readthedocs.io/en/latest/clients/#create-a-client
+     * @example https://billingo.readthedocs.io/en/latest/products/#create-product
      *
-     * @param array $clientPayload Information about the new client
+     * @param array $productPayload Information about the new product
      *
      * @return \Psr\Http\Message\ResponseInterface|mixed
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public function create(array $clientPayload);
+    public function create(array $productPayload);
 
     /**
-     * Find a specific client
+     * Find a specific product
      *
-     * @example https://billingo.readthedocs.io/en/latest/clients/#list-of-clients
+     * @example https://billingo.readthedocs.io/en/latest/products/#list-of-products
      *
-     * @param int $clientId Client id provided by Billingo
+     * @param int $productId Product id provided by Billingo
      *
      * @return \Psr\Http\Message\ResponseInterface|mixed
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public function find(int $clientId);
+    public function find(int $productId);
 
     /**
-     * Update a specified client
+     * Update a specified product
      *
-     * @example https://billingo.readthedocs.io/en/latest/clients/#update-a-client
+     * @example https://billingo.readthedocs.io/en/latest/products/#update-product
      *
-     * @param int $clientId Client id provided by Billingo
-     * @param array $clientPayload Information about the new client
+     * @param int $productId Product id provided by Billingo
+     * @param array $productPayload Information about the new product
      *
      * @return \Psr\Http\Message\ResponseInterface|mixed
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public function update(int $clientId, array $clientPayload);
+    public function update(int $productId, array $productPayload);
 
     /**
-     * Delete an existing client
+     * Delete an existing product
      *
-     * @example https://billingo.readthedocs.io/en/latest/clients/#delete-client
+     * @example https://billingo.readthedocs.io/en/latest/products/#delete-product
      *
-     * @param int $clientId Client id provided by Billingo
+     * @param int $productId Product id provided by Billingo
      *
      * @return \Psr\Http\Message\ResponseInterface|mixed
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Otisz\Billingo\Exceptions\ConnectorException
      */
-    public function destroy(int $clientId);
+    public function destroy(int $productId);
 }

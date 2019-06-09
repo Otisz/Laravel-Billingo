@@ -8,70 +8,71 @@
 
 namespace Otisz\Billingo;
 
-use Otisz\BillingoConnector\Connector;
-use Otisz\Billingo\Contracts\Billingo as BillingoContract;
+use Otisz\Billingo\Connector\Connector;
+use Otisz\Billingo\Contracts\Billable;
+use Otisz\Billingo\Traits\Services;
 
 /**
  * Class Billingo
  *
- * @author Levente Otta <leventeotta@gmail.com>
- *
  * @package Otisz\Billingo
  */
-class Billingo implements BillingoContract
+class Billingo implements Billable
 {
+    use Services;
+
     /**
-     * @var \Otisz\BillingoConnector\Connector $connector
+     * @var \Otisz\Billingo\Connector\Connector $connector
      */
-    private static $connector;
+    private $connector;
 
     /**
      * Billingo constructor.
      *
-     * @param \Otisz\BillingoConnector\Connector $connector
+     * @param \Otisz\Billingo\Connector\Connector $connector
      */
     public function __construct(Connector $connector)
     {
-        self::$connector = $connector;
+        $this->connector = $connector;
     }
 
     /**
      * @inheritDoc
      */
-    public static function connector(): Connector
+    public function connector(): Connector
     {
-        return self::$connector;
+        return $this->connector;
     }
 
     /**
      * @inheritDoc
      */
-    public static function get(string $uri, array $payload = [])
+    public function get(string $uri, array $payload = [])
     {
-        return self::$connector->get($uri, $payload);
+        return $this->connector->get($uri, $payload);
     }
 
     /**
      * @inheritdoc
      */
-    public static function post(string $uri, array $payload = [])
+    public function post(string $uri, array $payload = [])
     {
-        return self::$connector->post($uri, $payload);
+        return $this->connector->post($uri, $payload);
     }
 
     /**
      * @inheritdoc
      */
-    public static function put(string $uri, array $payload = [])
+    public function put(string $uri, array $payload = [])
     {
-        return self::$connector->put($uri, $payload);
+        return $this->connector->put($uri, $payload);
     }
 
     /**
      * @inheritdoc
      */
-    public static function delete(string $uri, array $payload = [])
+    public function delete(string $uri, array $payload = [])
     {
-        return self::$connector->delete($uri, $payload);
+        return $this->connector->delete($uri, $payload);
     }
 }
