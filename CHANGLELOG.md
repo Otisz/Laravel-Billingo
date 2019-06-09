@@ -1,5 +1,22 @@
 # Release Notes
 
+## [v1.0.0 (2019-06-09)](https://github.com/Otisz/Laravel-Billingo/compare/v0.4.2...v1.0.0)
+
+### Added
+- Added Products service ([894dd37](https://github.com/Otisz/Laravel-Billingo/commit/894dd37fcdf242b1e46749c8aff7e43ea72c0c83))
+- Added Bank accounts service ([e1ce6af](https://github.com/Otisz/Laravel-Billingo/commit/e1ce6afbddf412e530352755349759fca819b12d))
+- Added Currency service ([3afea84](https://github.com/Otisz/Laravel-Billingo/commit/3afea84d4c05e2f04c26d621a1bf973415b30381))
+- Added Expenses service ([6e53cdf](https://github.com/Otisz/Laravel-Billingo/commit/6e53cdf00d73353dedb1f9e63e3bb60378f2b46d))
+- Added Payment methods service ([1ef5af9](https://github.com/Otisz/Laravel-Billingo/commit/1ef5af94c63ccd7c2d65e532ba8dee76a826efc0))
+- Added Recurring service ([21337a4](https://github.com/Otisz/Laravel-Billingo/commit/21337a417fc329fe183902b396ed70611b503ed5))
+- Added Vat service ([6955643](https://github.com/Otisz/Laravel-Billingo/commit/69556439a960a6b06b0f0571c06ec6b4e528ed6d))
+- Added services to `Billingo.php` ([43bc81c](https://github.com/Otisz/Laravel-Billingo/commit/43bc81c319b7553240f344cd67e6907e37752cf5), [c44f6ae](https://github.com/Otisz/Laravel-Billingo/commit/c44f6aed9dda5ed67c6422a48b1082b17f131395))
+
+### Changed
+- Implement [Connector](https://github.com/Otisz/Billingo-API-Connector) package into [Billingo](https://github.com/Otisz/Laravel-Billingo) ([24e196e](https://github.com/Otisz/Laravel-Billingo/commit/24e196e5ec910a7497289c8bbfd77b3349d86711))
+- Update Clients and Invoices services cause of implementation ([992b5fc](https://github.com/Otisz/Laravel-Billingo/commit/992b5fcae86e0a6d2f113dad27de8b6e47b36b7f))
+- Update Service Provider ([bad8d57](https://github.com/Otisz/Laravel-Billingo/commit/bad8d5760b7fd490a155c48cfa3b1cbee8f10315))
+
 ## [v0.4.2 (2019-04-29)](https://github.com/Otisz/Laravel-Billingo/compare/v0.4.1...v0.4.2)
 
 ### Fixed

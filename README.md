@@ -10,13 +10,13 @@
 - [x] Implement invoices service (2019. 03. 25.)
 - [x] Refactor documents of services (2019. 03. 25.)
 - [x] Use custom connector package (2019. 04. 17.)
-- [x] Implement products service (2019. 05. 31.)
-- [x] Implement expenses service (2019. 05. 31.)
-- [x] Implement recurring service (2019. 05. 31.)
-- [x] Implement bank accounts service (2019. 05. 31.)
-- [x] Implement payment methods service (2019. 05. 31.)
-- [x] Implement vat service (2019. 05. 31.)
-- [x] Implement currency service (2019. 05. 31.)
+- [x] Implement products service (2019. 06. 09.)
+- [x] Implement expenses service (2019. 06. 09.)
+- [x] Implement recurring service (2019. 06. 09.)
+- [x] Implement bank accounts service (2019. 06. 09.)
+- [x] Implement payment methods service (2019. 06. 09.)
+- [x] Implement vat service (2019. 06. 09.)
+- [x] Implement currency service (2019. 06. 09.)
 - [ ] Add further docs
 
 ## Dependencies
@@ -75,17 +75,19 @@ Before you can use the Billingo service provider you have configure it with your
     
 ## Usage
 
-- Clients (outdated) [Check out Clients.md](docs/Clients.md)
-- Invoices (outdated) [Check out Invoices.md](docs/Invoices.md)
-- Products (coming soon)
-- Bank accounts (coming soon)
-- Currency (coming soon)
-- Expenses (coming soon)
-- Payment methods (coming soon)
-- Recurring (coming soon)
-- Vat (coming soon)
+- Clients [Check out Clients.md](docs/Clients.md)
+- Invoices [Check out Invoices.md](docs/Invoices.md)
+- Products (doc is coming soon)
+- Bank accounts (doc is coming soon)
+- Currency (doc is coming soon)
+- Expenses (doc is coming soon)
+- Payment methods (doc is coming soon)
+- Recurring (doc is coming soon)
+- Vat (doc is coming soon)
 
 ```php
+\Billingo::connector();
+
 \Billingo::get(string $uri, array $payload = []);
 
 \Billingo::post(string $uri, array $payload = []);
@@ -93,6 +95,24 @@ Before you can use the Billingo service provider you have configure it with your
 \Billingo::put(string $uri, array $payload = []);
 
 \Billingo::delete(string $uri, array $payload = []);
+
+\Billingo::clients();
+
+\Billingo::invoices();
+
+\Billingo::products();
+
+\Billingo::bankAccounts();
+
+\Billingo::currency();
+
+\Billingo::expenses();
+
+\Billingo::paymentMethods();
+
+\Billingo::recurring();
+
+\Billingo::vat();
 ```
     
 ## Testing
@@ -103,13 +123,13 @@ $ composer lint
 
 ## Contributing
 
-### Security
+### Security Vulnerabilities
 
-If you discover any security-related issues, please email [leventeotta@gmail.com](mailto:leventeotta@gmail.com) instead of using the issue tracker.
+If you discover any security-related issues, please email [leventeotta@gmail.com](mailto:leventeotta@gmail.com) instead of using the issue tracker. All security vulnerabilities will be promptly addressed.
 
 ## Licence
 
-The MIT Licence (MIT). Please see [License File](LICENSE.md) for more information.
+The Laravel Billingo package is open-source software licensed under the [MIT license](LICENSE.md).
 
 [shield-packagist]: https://img.shields.io/packagist/v/otisz/laravel-billingo.svg?style=flat-square
 [shield-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
