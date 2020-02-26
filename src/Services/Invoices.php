@@ -1,38 +1,39 @@
 <?php
-/**
- * Deployed by Levente Otta <leventeotta@gmail.com>
- *
- * @author Levente Otta <leventeotta@gmail.com>
- * @copyright Copyright (c) 2019. Levente Otta
- */
 
 namespace Otisz\Billingo\Services;
 
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Response;
-use Otisz\Billingo\Contracts\Invoices as Contract;
 use Otisz\Billingo\Facades\Billingo;
+use Psr\Http\Message\ResponseInterface;
 
-/**
- * Class Invoices
- *
- * @package Otisz\Billingo\Services
- */
-class Invoices implements Contract
+class Invoices
 {
     /**
-     * @inheritdoc
+     * Search invoices.
+     *
+     * @example https://billingo.readthedocs.io/en/latest/query/
+     *
+     * @param  array  $filters
+     *
+     * @return array
      */
-    public function query(array $filters)
+    public function query(array $filters): array
     {
         return Billingo::get('invoices/query', $filters);
     }
 
     /**
-     * @inheritdoc
+     * Get a listing of invoices
+     *
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#invoices
+     *
+     * @param  int  $page
+     * @param  int  $maxPerPage
+     *
+     * @return array
      */
-    public function all(int $page = 1, $maxPerPage = 20)
+    public function all(int $page = 1, $maxPerPage = 20): array
     {
         if ($maxPerPage > 50) {
             $maxPerPage = 50;
@@ -47,25 +48,44 @@ class Invoices implements Contract
     }
 
     /**
-     * @inheritdoc
+     * Create a new invoice
+     *
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#save-a-new-invoice
+     *
+     * @param  array  $invoicePayload
+     *
+     * @return array
      */
-    public function create(array $invoicePayload)
+    public function create(array $invoicePayload): array
     {
         return Billingo::post('invoices', $invoicePayload);
     }
 
     /**
-     * @inheritdoc
+     * Find a specified client
+     *
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#invoices
+     *
+     * @param  int|string  $invoiceId
+     *
+     * @return array
      */
-    public function find(int $invoiceId)
+    public function find($invoiceId): array
     {
         return Billingo::get("invoices/{$invoiceId}");
     }
 
     /**
-     * @inheritdoc
+     * Create download link
+     *
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#create-download-link
+     *
+     * @param  int|string  $invoiceId
+     * @param  bool  $asURL
+     *
+     * @return array|string
      */
-    public function accessCode(int $invoiceId, bool $asURL = false)
+    public function accessCode($invoiceId, bool $asURL = false)
     {
         $response = Billingo::get("invoices/{$invoiceId}/code");
 
@@ -77,49 +97,72 @@ class Invoices implements Contract
     }
 
     /**
-     * @inheritdoc
+     * Generate normal invoice from proforma invoice
+     *
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#generate-normal-invoice-from-proforma-invoice
+     *
+     * @param  int|string  $invoiceId
+     *
+     * @return array
      */
-    public function proformaToNormal(int $invoiceId)
+    public function proformaToNormal($invoiceId): array
     {
         return Billingo::get("invoices/{$invoiceId}/generate");
     }
 
     /**
-     * @inheritdoc
+     * Download invoice
+     *
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#download-invoice
+     *
+     * @param  int|string  $invoiceId
+     *
+     * @return \Psr\Http\Message\ResponseInterface
      */
-    public function download(int $invoiceId, $file = null, bool $asResponse = false)
+    public function download($invoiceId): ResponseInterface
     {
-        $downloadable = Billingo::connector()->downloadInvoice($invoiceId, $file);
-        
-        if ($asResponse) {
-            return Response::make($downloadable, 200, [
-                'Content-Type' => 'application/pdf',
-            ]);
-        }
-
-        return $downloadable;
+        return Billingo::gateway()->downloadInvoice($invoiceId);
     }
 
     /**
-     * @inheritdoc
+     * Cancel the invoice
+     *
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#cancel-the-invoice
+     *
+     * @param  int|string  $invoiceId
+     *
+     * @return array
      */
-    public function cancel(int $invoiceId)
+    public function cancel($invoiceId): array
     {
         return Billingo::get("invoices/{$invoiceId}/cancel");
     }
 
     /**
-     * @inheritdoc
+     * Send the invoice to the client email address
+     *
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#send-the-invoice-to-the-client-email-address
+     *
+     * @param  int|string  $invoiceId
+     *
+     * @return array
      */
-    public function send(int $invoiceId)
+    public function send(int $invoiceId): array
     {
         return Billingo::get("invoices/{$invoiceId}/send");
     }
 
     /**
-     * @inheritdoc
+     * Pay the full or partial amount of the invoice
+     *
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#pay-the-full-or-partial-amount-of-the-invoice
+     *
+     * @param  int|string  $invoiceId
+     * @param  array  $payload
+     *
+     * @return array
      */
-    public function pay(int $invoiceId, array $payload)
+    public function pay($invoiceId, array $payload): array
     {
         if (!Arr::has($payload, 'date')) {
             $payload = Arr::add($payload, 'date', Carbon::today()->toDateString());
@@ -129,17 +172,27 @@ class Invoices implements Contract
     }
 
     /**
-     * @inheritdoc
+     * Undo payment of the invoice
+     *
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#undo-payment-of-the-invoice
+     *
+     * @param  int|string  $invoiceId
+     *
+     * @return array
      */
-    public function undoPayment(int $invoiceId)
+    public function undoPayment($invoiceId): array
     {
         return Billingo::delete("invoices/{$invoiceId}/pay");
     }
 
     /**
-     * @inheritdoc
+     * Get the available invoice blocks
+     *
+     * @example https://billingo.readthedocs.io/en/latest/invoices/#get-the-available-invoice-blocks
+     *
+     * @return array
      */
-    public function availableBlocks()
+    public function availableBlocks(): array
     {
         return Billingo::get('invoices/blocks');
     }

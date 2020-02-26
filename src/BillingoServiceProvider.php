@@ -1,21 +1,10 @@
 <?php
-/**
- * Deployed by Levente Otta <leventeotta@gmail.com>
- *
- * @author Levente Otta <leventeotta@gmail.com>
- * @copyright Copyright (c) 2019. Levente Otta
- */
 
 namespace Otisz\Billingo;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use Otisz\Billingo\Connector\Connector;
 
-/**
- * Class BillingoServiceProvider
- *
- * @package Otisz\Billingo
- */
 class BillingoServiceProvider extends ServiceProvider
 {
     /**
@@ -25,9 +14,13 @@ class BillingoServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $configPath = __DIR__.'/../config/billingo.php';
+
         $this->publishes([
-            __DIR__ . '/../config/billingo.php' => config_path('billingo.php'),
+            $configPath => $this->app->configPath('billingo.php'),
         ], 'config');
+
+        $this->mergeConfigFrom($configPath, 'billingo');
     }
 
     /**
@@ -37,15 +30,12 @@ class BillingoServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/billingo.php', 'billingo');
+        $this->app->bind('billingo', static function (Application $app) {
+            $config = $app['config']['billingo'];
 
-        $this->app->bind('billingo', static function () {
-            $connector = new Connector([
-                'public_key' => config('billingo.public_key'),
-                'private_key' => config('billingo.private_key'),
-            ]);
-
-            return new Billingo($connector);
+            return new Billingo(
+                new Gateway($config['public_key'], $config['private_key'])
+            );
         });
 
         $this->app->alias('billingo', Billingo::class);

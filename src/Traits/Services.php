@@ -1,10 +1,4 @@
 <?php
-/**
- * Deployed by Levente Otta <leventeotta@gmail.com>
- *
- * @author Levente Otta <leventeotta@gmail.com>
- * @copyright Copyright (c) 2019. Levente Otta
- */
 
 namespace Otisz\Billingo\Traits;
 
@@ -18,14 +12,8 @@ use Otisz\Billingo\Services\Products;
 use Otisz\Billingo\Services\Recurring;
 use Otisz\Billingo\Services\Vat;
 
-/**
- * Class Services
- *
- * @package Otisz\Billingo\Traits
- */
 trait Services
 {
-
     /**
      * @return \Otisz\Billingo\Services\Clients
      */

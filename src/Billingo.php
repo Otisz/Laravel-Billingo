@@ -1,78 +1,75 @@
 <?php
-/**
- * Deployed by Levente Otta <leventeotta@gmail.com>
- *
- * @author Levente Otta <leventeotta@gmail.com>
- * @copyright Copyright (c) 2019. Levente Otta
- */
 
 namespace Otisz\Billingo;
 
-use Otisz\Billingo\Connector\Connector;
-use Otisz\Billingo\Contracts\Billable;
 use Otisz\Billingo\Traits\Services;
 
-/**
- * Class Billingo
- *
- * @package Otisz\Billingo
- */
-class Billingo implements Billable
+class Billingo
 {
     use Services;
 
     /**
-     * @var \Otisz\Billingo\Connector\Connector $connector
+     * @var \Otisz\Billingo\Gateway
      */
-    private $connector;
+    private $gateway;
 
     /**
-     * Billingo constructor.
+     * @param  \Otisz\Billingo\Gateway  $gateway
+     */
+    public function __construct(Gateway $gateway)
+    {
+        $this->gateway = $gateway;
+    }
+
+    /**
+     * @return \Otisz\Billingo\Gateway
+     */
+    public function gateway(): Gateway
+    {
+        return $this->gateway;
+    }
+
+    /**
+     * @param  string  $uri
+     * @param  array  $payload
      *
-     * @param \Otisz\Billingo\Connector\Connector $connector
+     * @return array
      */
-    public function __construct(Connector $connector)
+    public function get(string $uri, array $payload = []): array
     {
-        $this->connector = $connector;
+        return $this->gateway->get($uri, $payload);
     }
 
     /**
-     * @inheritDoc
+     * @param  string  $uri
+     * @param  array  $payload
+     *
+     * @return array
      */
-    public function connector(): Connector
+    public function post(string $uri, array $payload = []): array
     {
-        return $this->connector;
+        return $this->gateway->post($uri, $payload);
     }
 
     /**
-     * @inheritDoc
+     * @param  string  $uri
+     * @param  array  $payload
+     *
+     * @return array
      */
-    public function get(string $uri, array $payload = [])
+    public function put(string $uri, array $payload = []): array
     {
-        return $this->connector->get($uri, $payload);
+        return $this->gateway->put($uri, $payload);
     }
 
     /**
-     * @inheritdoc
+     * @param  string  $uri
+     * @param  array  $payload
+     *
+     * @return array
      */
-    public function post(string $uri, array $payload = [])
+    public function delete(string $uri, array $payload = []): array
     {
-        return $this->connector->post($uri, $payload);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function put(string $uri, array $payload = [])
-    {
-        return $this->connector->put($uri, $payload);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function delete(string $uri, array $payload = [])
-    {
-        return $this->connector->delete($uri, $payload);
+        return $this->gateway->delete($uri, $payload);
     }
 }

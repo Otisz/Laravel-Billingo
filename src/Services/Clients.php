@@ -1,27 +1,22 @@
 <?php
-/**
- * Deployed by Levente Otta <leventeotta@gmail.com>
- *
- * @author Levente Otta <leventeotta@gmail.com>
- * @copyright Copyright (c) 2019. Levente Otta
- */
 
 namespace Otisz\Billingo\Services;
 
-use Otisz\Billingo\Contracts\Clients as Contract;
 use Otisz\Billingo\Facades\Billingo;
 
-/**
- * Class Clients
- *
- * @package Otisz\Billingo\Services
- */
-class Clients implements Contract
+class Clients
 {
     /**
-     * @inheritdoc
+     * Get a listing of clients
+     *
+     * @example https://billingo.readthedocs.io/en/latest/clients/#list-of-clients
+     *
+     * @param  int  $page  Show the given page
+     * @param  int  $maxPerPage  Sets the maximum number of results to return. Absolute maximum is 50!
+     *
+     * @return array
      */
-    public function all(int $page = 1, int $maxPerPage = 20)
+    public function all(int $page = 1, int $maxPerPage = 20): array
     {
         if ($maxPerPage > 50) {
             $maxPerPage = 50;
@@ -36,33 +31,58 @@ class Clients implements Contract
     }
 
     /**
-     * @inheritdoc
+     * Create a new client
+     *
+     * @example https://billingo.readthedocs.io/en/latest/clients/#create-a-client
+     *
+     * @param  array  $clientPayload  Information about the new client
+     *
+     * @return array
      */
-    public function create(array $clientPayload)
+    public function create(array $clientPayload): array
     {
         return Billingo::post('clients', $clientPayload);
     }
 
     /**
-     * @inheritdoc
+     * Find a specific client
+     *
+     * @example https://billingo.readthedocs.io/en/latest/clients/#list-of-clients
+     *
+     * @param  int|string  $clientId  Client id provided by Billingo
+     *
+     * @return array
      */
-    public function find(int $clientId)
+    public function find($clientId): array
     {
         return Billingo::get("clients/{$clientId}");
     }
 
     /**
-     * @inheritdoc
+     * Update a specified client
+     *
+     * @example https://billingo.readthedocs.io/en/latest/clients/#update-a-client
+     *
+     * @param  int|string  $clientId  Client id provided by Billingo
+     * @param  array  $clientPayload  Information about the new client
+     *
+     * @return array
      */
-    public function update(int $clientId, array $clientPayload)
+    public function update($clientId, array $clientPayload): array
     {
         return Billingo::put("clients/{$clientId}", $clientPayload);
     }
 
     /**
-     * @inheritdoc
+     * Delete an existing client
+     *
+     * @example https://billingo.readthedocs.io/en/latest/clients/#delete-client
+     *
+     * @param  int|string  $clientId  Client id provided by Billingo
+     *
+     * @return array
      */
-    public function destroy(int $clientId)
+    public function destroy($clientId): array
     {
         return Billingo::delete("clients/{$clientId}");
     }

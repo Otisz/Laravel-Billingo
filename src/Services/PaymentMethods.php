@@ -1,27 +1,21 @@
 <?php
-/**
- * Deployed by Levente Otta <leventeotta@gmail.com>
- *
- * @author Levente Otta <leventeotta@gmail.com>
- * @copyright Copyright (c) 2019. Levente Otta
- */
 
 namespace Otisz\Billingo\Services;
 
-use Otisz\Billingo\Contracts\PaymentMethods as Contract;
 use Otisz\Billingo\Facades\Billingo;
 
-/**
- * Class PaymentMethods
- *
- * @package Otisz\Billingo\Services
- */
-class PaymentMethods implements Contract
+class PaymentMethods
 {
     /**
-     * @inheritdoc
+     * Get a listing of payment methods
+     *
+     * @example https://billingo.readthedocs.io/en/latest/payment_methods/#list-the-available-payment-methods
+     *
+     * @param  string  $langCode  Language code. Can be any of hu, en, or de
+     *
+     * @return array
      */
-    public function all(string $langCode)
+    public function all(string $langCode): array
     {
         return Billingo::get("payment_methods/{$langCode}");
     }

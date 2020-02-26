@@ -1,34 +1,34 @@
 <?php
-/**
- * Deployed by Levente Otta <leventeotta@gmail.com>
- *
- * @author Levente Otta <leventeotta@gmail.com>
- * @copyright Copyright (c) 2019. Levente Otta
- */
 
 namespace Otisz\Billingo\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use Otisz\Billingo\Gateway;
+use Otisz\Billingo\Services\BankAccounts;
+use Otisz\Billingo\Services\Clients;
+use Otisz\Billingo\Services\Currency;
+use Otisz\Billingo\Services\Expenses;
+use Otisz\Billingo\Services\Invoices;
+use Otisz\Billingo\Services\PaymentMethods;
+use Otisz\Billingo\Services\Products;
+use Otisz\Billingo\Services\Recurring;
+use Otisz\Billingo\Services\Vat;
 
 /**
- * Class Billingo
- *
- * @package Otisz\Billingo\Facades
- *
- * @method static mixed|\Psr\Http\Message\ResponseInterface get(string $uri, array $payload = [])
- * @method static mixed|\Psr\Http\Message\ResponseInterface post(string $uri, array $payload = [])
- * @method static mixed|\Psr\Http\Message\ResponseInterface put(string $uri, array $payload = [])
- * @method static mixed|\Psr\Http\Message\ResponseInterface delete(string $uri, array $payload = [])
- * @method static \Otisz\Billingo\Connector\Connector connector()
- * @method static \Otisz\Billingo\Services\Clients clients()
- * @method static \Otisz\Billingo\Services\Invoices invoices()
- * @method static \Otisz\Billingo\Services\Products products()
- * @method static \Otisz\Billingo\Services\BankAccounts bankAccounts()
- * @method static \Otisz\Billingo\Services\Currency currency()
- * @method static \Otisz\Billingo\Services\Expenses expenses()
- * @method static \Otisz\Billingo\Services\PaymentMethods paymentMethods()
- * @method static \Otisz\Billingo\Services\Recurring recurring()
- * @method static \Otisz\Billingo\Services\Vat vat()
+ * @method static array get(string $uri, array $payload = [])
+ * @method static array post(string $uri, array $payload = [])
+ * @method static array put(string $uri, array $payload = [])
+ * @method static array delete(string $uri, array $payload = [])
+ * @method static Gateway gateway()
+ * @method static Clients clients()
+ * @method static Invoices invoices()
+ * @method static Products products()
+ * @method static BankAccounts bankAccounts()
+ * @method static Currency currency()
+ * @method static Expenses expenses()
+ * @method static PaymentMethods paymentMethods()
+ * @method static Recurring recurring()
+ * @method static Vat vat()
  */
 class Billingo extends Facade
 {
