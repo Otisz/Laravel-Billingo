@@ -6,6 +6,12 @@
 
 [Billingo](https://www.billingo.hu) API integration for Laravel.
 
+# STATUS: EOL
+
+### Laravel Billingo V1 status: End Of Life
+
+Instead, use version 2.
+
 ## Roadmap
 - [x] Implement invoices service (2019. 03. 25.)
 - [x] Refactor documents of services (2019. 03. 25.)
