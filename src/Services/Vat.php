@@ -1,27 +1,22 @@
 <?php
-/**
- * Deployed by Levente Otta <leventeotta@gmail.com>
- *
- * @author Levente Otta <leventeotta@gmail.com>
- * @copyright Copyright (c) 2019. Levente Otta
- */
 
 namespace Otisz\Billingo\Services;
 
-use Otisz\Billingo\Contracts\Vat as Contract;
 use Otisz\Billingo\Facades\Billingo;
 
-/**
- * Class Vat
- *
- * @package Otisz\Billingo\Services
- */
-class Vat implements Contract
+class Vat
 {
     /**
-     * @inheritDoc
+     * Get a listing of available VAT codes
+     *
+     * @example https://billingo.readthedocs.io/en/latest/vat/#return-a-list-of-available-vat-codes
+     *
+     * @param  mixed|null  $value  The value to filter for (eg. 0.27)
+     * @param  mixed|null  $description  The description to filter for (eg. AM)
+     *
+     * @return array
      */
-    public function available($value = null, $description = null)
+    public function available($value = null, $description = null): array
     {
         $payload = [];
 
@@ -37,9 +32,18 @@ class Vat implements Contract
     }
 
     /**
-     * @inheritDoc
+     * Get a listing of available VAT codes
+     *
+     * @example https://billingo.readthedocs.io/en/latest/vat/#get-eu-vat-code
+     *
+     * @param  string  $country  the ISO3166 country code given by the user (eg. DE)
+     * @param  string  $ipAddress  The IP address of the user
+     * @param  string  $businessCountry  The ISO3166 country code for the operating business
+     * @param  string|null  $vatCode  The EU VAT code for the user (eg. DE13816200)
+     *
+     * @return array
      */
-    public function euVatCode($country, $ipAddress, $businessCountry, $vatCode = null)
+    public function euVatCode($country, $ipAddress, $businessCountry, $vatCode = null): array
     {
         $payload = [
             'country' => $country,

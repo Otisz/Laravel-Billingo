@@ -1,34 +1,28 @@
 <?php
-/**
- * Deployed by Levente Otta <leventeotta@gmail.com>
- *
- * @author Levente Otta <leventeotta@gmail.com>
- * @copyright Copyright (c) 2019. Levente Otta
- */
 
 namespace Otisz\Billingo\Services;
 
-use Otisz\Billingo\Contracts\Currency as Contract;
 use Otisz\Billingo\Facades\Billingo;
 
-/**
- * Class Currency
- *
- * @package Otisz\Billingo\Services
- */
-class Currency implements Contract
+class Currency
 {
     /**
-     * @inheritDoc
+     * Convert amount from to
+     *
+     * @example https://billingo.readthedocs.io/en/latest/currency/#convert-value
+     *
+     * @param  int|float|double  $value  The amount to convert
+     * @param  string  $from  The currency to convert from (eg. EUR)
+     * @param  string  $to  The currency to convert to (eg. USD)
+     *
+     * @return array
      */
-    public function convert($value, string $from, string $to)
+    public function convert($value, string $from, string $to): array
     {
-        $payload = [
+        return Billingo::get('currency', [
             'from' => $from,
             'to' => $to,
             'value' => $value,
-        ];
-
-        return Billingo::get('currency', $payload);
+        ]);
     }
 }

@@ -1,27 +1,22 @@
 <?php
-/**
- * Deployed by Levente Otta <leventeotta@gmail.com>
- *
- * @author Levente Otta <leventeotta@gmail.com>
- * @copyright Copyright (c) 2019. Levente Otta
- */
 
 namespace Otisz\Billingo\Services;
 
-use Otisz\Billingo\Contracts\Recurring as Contract;
 use Otisz\Billingo\Facades\Billingo;
 
-/**
- * Class Recurring
- *
- * @package Otisz\Billingo\Services
- */
-class Recurring implements Contract
+class Recurring
 {
     /**
-     * @inheritdoc
+     * Get a listing of my recurring profile(s)
+     *
+     * @example https://billingo.readthedocs.io/en/latest/recurring/#show-my-recurring-profiles
+     *
+     * @param  int  $page  Show the given page
+     * @param  int  $maxPerPage  Sets the maximum number of results to return. Absolute maximum is 50!
+     *
+     * @return array
      */
-    public function all(int $page = 1, int $maxPerPage = 20)
+    public function all(int $page = 1, int $maxPerPage = 20): array
     {
         if ($maxPerPage > 50) {
             $maxPerPage = 50;
@@ -36,41 +31,72 @@ class Recurring implements Contract
     }
 
     /**
-     * @inheritDoc
+     * Create a new recurring profile
+     *
+     * @example https://billingo.readthedocs.io/en/latest/recurring/#create-a-new-recurring-profile
+     *
+     * @param  array  $recurringPayload  Information about the new recurring profile
+     *
+     * @return array
      */
-    public function create(array $productPayload)
+    public function create(array $recurringPayload): array
     {
-        return Billingo::post('recurring', $productPayload);
+        return Billingo::post('recurring', $recurringPayload);
     }
 
     /**
-     * @inheritDoc
+     * Find a specific recurring profile
+     *
+     * @example https://billingo.readthedocs.io/en/latest/recurring/#show-my-recurring-profiles
+     *
+     * @param  int|string  $recurringId  Recurring id provided by Billingo
+     *
+     * @return array
      */
-    public function find(int $recurringId)
+    public function find($recurringId): array
     {
         return Billingo::get("recurring/{$recurringId}");
     }
 
     /**
-     * @inheritDoc
+     * Update a specified recurring profile
+     *
+     * @example https://billingo.readthedocs.io/en/latest/recurring/#update-a-recurring-profile
+     *
+     * @param  int|string  $recurringId  Recurring profile id provided by Billingo
+     * @param  array  $recurringPayload  Information about the new recurring profile
+     *
+     * @return array
      */
-    public function update(int $recurringId, array $recurringPayload)
+    public function update($recurringId, array $recurringPayload): array
     {
         return Billingo::put("recurring/{$recurringId}", $recurringPayload);
     }
 
     /**
-     * @inheritDoc
+     * Pause an existing recurring profile
+     *
+     * @example https://billingo.readthedocs.io/en/latest/recurring/#pause-a-recurring-profile
+     *
+     * @param  int|string  $recurringId  Recurring profile id provided by Billingo
+     *
+     * @return array
      */
-    public function pause(int $recurringId)
+    public function pause($recurringId): array
     {
         return Billingo::post("recurring/{$recurringId}/stop");
     }
 
     /**
-     * @inheritDoc
+     * Resume an existing recurring profile
+     *
+     * @example https://billingo.readthedocs.io/en/latest/recurring/#resume-a-recurring-profile
+     *
+     * @param  int|string  $recurringId  Recurring profile id provided by Billingo
+     *
+     * @return array
      */
-    public function resume(int $recurringId)
+    public function resume($recurringId): array
     {
         return Billingo::post("recurring/{$recurringId}/resume");
     }
