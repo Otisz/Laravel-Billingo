@@ -125,7 +125,7 @@ class Gateway
      */
     protected function generateBearerToken(): string
     {
-        $now = Carbon::now('Europe/Budapest');
+        $now = Carbon::now('Europe/Budapest')->timestamp;
 
         $signatureData = [
             'sub' => $this->publicKey,
