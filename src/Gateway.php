@@ -125,20 +125,19 @@ class Gateway
      */
     protected function generateBearerToken(): string
     {
-        $now = Carbon::now('Europe/Budapest')->timestamp;
+        $now = Carbon::now('Europe/Budapest')->unix();
 
-        $signatureData = [
+        $signature = [
             'sub' => $this->publicKey,
             'iat' => $now - 60,
             'exp' => $now + 60,
             'iss' => $_SERVER['REQUEST_URI'] ?? 'cli',
             'nbf' => $now - 60,
-            'jti' => md5($this->privateKey.$now),
         ];
 
-        $token = JWT::encode($signatureData, $this->privateKey);
+        $signature['jti'] = md5($signature['sub'].$signature['iat']);
 
-        return "Bearer {$token}";
+        return JWT::encode($signature, $this->privateKey);
     }
 
     /**
