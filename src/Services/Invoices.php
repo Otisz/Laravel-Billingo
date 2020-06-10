@@ -90,7 +90,7 @@ class Invoices
         $response = Billingo::get("invoices/{$invoiceId}/code");
 
         if ($asURL) {
-            return "https://www.billingo.hu/access/c:{$response['code']}";
+            return "https://www.billingo.hu/access/c:{$response['data']['code']}";
         }
 
         return $response;
