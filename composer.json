@@ -1,0 +1,61 @@
+{
+  "name": "otisz/laravel-billingo",
+  "description": "Billingo API V3 integration for Laravel",
+  "type": "library",
+  "licence": "MIT",
+  "keywords": [
+    "laravel",
+    "billingo",
+    "api",
+    "v3"
+  ],
+  "authors": [
+    {
+      "name": "Levente Otta",
+      "email": "leventeotta@gmail.com",
+      "homepage": "https://leventeotta.com"
+    }
+  ],
+  "support": {
+    "source": "https://github.com/Otisz/Laravel-Billingo",
+    "issues": "https://github.com/Otisz/Laravel-Billingo/issues"
+  },
+  "require": {
+    "php": "^7.2",
+    "ext-json": "*",
+    "illuminate/support": "^5.8|^6.0|^7.0|^8.0",
+    "guzzlehttp/guzzle": "^6.0|^7.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^3.8|^4.0|^5.0",
+    "phpunit/phpunit": "^8.0|^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Otisz\\Billingo\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Otisz\\Billingo\\Tests\\": "tests"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Otisz\\Billingo\\BillingoServiceProvider"
+      ],
+      "aliases": {
+        "Billingo": "Otisz\\Billingo\\Facades\\Billingo"
+      }
+    },
+    "branch-alias": {
+      "dev-master": "master"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
