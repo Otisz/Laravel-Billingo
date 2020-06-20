@@ -53,6 +53,9 @@
       "dev-master": "master"
     }
   },
+  "scripts": {
+    "test": "phpunit"
+  },
   "config": {
     "sort-packages": true
   },

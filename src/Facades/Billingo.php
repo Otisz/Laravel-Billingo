@@ -3,14 +3,14 @@
 namespace Otisz\Billingo\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Otisz\Billingo\Gateway;
 
 /**
  * @method static array get(string $uri, array $payload = [])
  * @method static array post(string $uri, array $payload = [])
  * @method static array put(string $uri, array $payload = [])
  * @method static array delete(string $uri, array $payload = [])
- * @method static Gateway gateway()
+ * @method static \Otisz\Billingo\Gateway gateway()
+ * @method static \Otisz\Billingo\Services\Partners partners()
  */
 class Billingo extends Facade
 {

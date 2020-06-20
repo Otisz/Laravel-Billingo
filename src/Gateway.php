@@ -76,12 +76,11 @@ class Gateway
      * @param  string  $uri
      * @param  array  $payload
      *
-     * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function delete(string $uri, array $payload = []): array
+    public function delete(string $uri, array $payload = []): void
     {
-        return $this->request('DELETE', $uri, [
+        $this->request('DELETE', $uri, [
             'query' => $payload,
         ]);
     }
@@ -91,10 +90,10 @@ class Gateway
      * @param  string  $uri
      * @param  array  $payload
      *
-     * @return array
+     * @return array|null
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function request(string $method, string $uri, array $payload = []): array
+    protected function request(string $method, string $uri, array $payload = []): ?array
     {
         $defaultOptions = [
             'headers' => [
