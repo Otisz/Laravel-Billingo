@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static array delete(string $uri, array $payload = [])
  * @method static \Otisz\Billingo\Gateway gateway()
  * @method static \Otisz\Billingo\Services\Partners partners()
+ * @method static \Otisz\Billingo\Services\Products products()
  */
 class Billingo extends Facade
 {
