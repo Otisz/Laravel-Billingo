@@ -4,6 +4,7 @@ namespace Otisz\Billingo\Traits;
 
 use Otisz\Billingo\Services\BankAccounts;
 use Otisz\Billingo\Services\Currencies;
+use Otisz\Billingo\Services\Organization;
 use Otisz\Billingo\Services\Partners;
 use Otisz\Billingo\Services\Products;
 
@@ -39,5 +40,13 @@ trait HasServices
     public function currencies(): Currencies
     {
         return new Currencies();
+    }
+
+    /**
+     * @return \Otisz\Billingo\Services\Organization
+     */
+    public function organization(): Organization
+    {
+        return new Organization();
     }
 }
