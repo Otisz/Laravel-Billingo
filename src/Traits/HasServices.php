@@ -2,6 +2,7 @@
 
 namespace Otisz\Billingo\Traits;
 
+use Otisz\Billingo\Services\BankAccounts;
 use Otisz\Billingo\Services\Partners;
 use Otisz\Billingo\Services\Products;
 
@@ -21,5 +22,13 @@ trait HasServices
     public function products(): Products
     {
         return new Products();
+    }
+
+    /**
+     * @return \Otisz\Billingo\Services\BankAccounts
+     */
+    public function bankAccount(): BankAccounts
+    {
+        return new BankAccounts();
     }
 }

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Otisz\Billingo\Gateway gateway()
  * @method static \Otisz\Billingo\Services\Partners partners()
  * @method static \Otisz\Billingo\Services\Products products()
+ * @method static \Otisz\Billingo\Services\BankAccounts bankAccount()
  */
 class Billingo extends Facade
 {

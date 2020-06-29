@@ -6,6 +6,8 @@ use Otisz\Billingo\Facades\Billingo;
 
 class Partners
 {
+    private $uri = 'partners';
+
     /**
      * @param  array  $payload
      *
@@ -13,7 +15,7 @@ class Partners
      */
     public function index(array $payload = []): array
     {
-        return Billingo::get('partners', $payload);
+        return Billingo::get($this->uri, $payload);
     }
 
     /**
@@ -23,7 +25,7 @@ class Partners
      */
     public function store(array $payload): array
     {
-        return Billingo::post('partners', $payload);
+        return Billingo::post($this->uri, $payload);
     }
 
     /**
@@ -33,7 +35,7 @@ class Partners
      */
     public function show(int $partnerID): array
     {
-        return Billingo::get("partners/{$partnerID}");
+        return Billingo::get("{$this->uri}/{$partnerID}");
     }
 
     /**
@@ -44,7 +46,7 @@ class Partners
      */
     public function update(int $partnerID, array $payload): array
     {
-        return Billingo::put("partners/{$partnerID}", $payload);
+        return Billingo::put("{$this->uri}/{$partnerID}", $payload);
     }
 
     /**
@@ -52,6 +54,6 @@ class Partners
      */
     public function destroy(int $partnerID): void
     {
-        Billingo::delete("partners/{$partnerID}");
+        Billingo::delete("{$this->uri}/{$partnerID}");
     }
 }
