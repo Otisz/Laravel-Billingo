@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Otisz\Billingo\Services\BankAccounts bankAccount()
  * @method static \Otisz\Billingo\Services\Currencies currencies()
  * @method static \Otisz\Billingo\Services\Organization organization()
+ * @method static \Otisz\Billingo\Services\DocumentBlocks documentBlocks()
  */
 class Billingo extends Facade
 {

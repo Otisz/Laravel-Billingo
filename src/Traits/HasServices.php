@@ -4,6 +4,7 @@ namespace Otisz\Billingo\Traits;
 
 use Otisz\Billingo\Services\BankAccounts;
 use Otisz\Billingo\Services\Currencies;
+use Otisz\Billingo\Services\DocumentBlocks;
 use Otisz\Billingo\Services\Organization;
 use Otisz\Billingo\Services\Partners;
 use Otisz\Billingo\Services\Products;
@@ -49,4 +50,11 @@ trait HasServices
     {
         return new Organization();
     }
-}
+
+    /**
+     * @return \Otisz\Billingo\Services\DocumentBlocks
+     */
+    public function documentBlocks(): DocumentBlocks
+    {
+        return new DocumentBlocks();
+    }
