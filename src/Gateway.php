@@ -3,6 +3,7 @@
 namespace Otisz\Billingo;
 
 use GuzzleHttp\Client;
+use Psr\Http\Message\ResponseInterface;
 
 class Gateway
 {
@@ -82,6 +83,21 @@ class Gateway
     {
         $this->request('DELETE', $uri, [
             'query' => $payload,
+        ]);
+    }
+
+    /**
+     * @param  string  $uri
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function download(string $uri): ResponseInterface
+    {
+        return $this->client->get($uri, [
+            'headers' => [
+                'X-API-KEY' => $this->apiKey,
+                'Accept' => 'application/pdf',
+            ],
         ]);
     }
 

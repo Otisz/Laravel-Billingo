@@ -2,6 +2,8 @@
 
 namespace Otisz\Billingo\Traits;
 
+use Psr\Http\Message\ResponseInterface;
+
 trait HasRequests
 {
     /**
@@ -44,5 +46,15 @@ trait HasRequests
     public function delete(string $uri, array $payload = []): void
     {
         $this->gateway->delete($uri, $payload);
+    }
+
+    /**
+     * @param  string  $uri
+     *
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function download(string $uri): ResponseInterface
+    {
+        return $this->gateway->download($uri);
     }
 }

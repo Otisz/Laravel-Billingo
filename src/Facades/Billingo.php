@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static array get(string $uri, array $payload = [])
  * @method static array post(string $uri, array $payload = [])
  * @method static array put(string $uri, array $payload = [])
- * @method static array delete(string $uri, array $payload = [])
+ * @method static void delete(string $uri, array $payload = [])
+ * @method static \Psr\Http\Message\ResponseInterface download(string $uri)
  * @method static \Otisz\Billingo\Gateway gateway()
  * @method static \Otisz\Billingo\Services\Partners partners()
  * @method static \Otisz\Billingo\Services\Products products()
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Otisz\Billingo\Services\Currencies currencies()
  * @method static \Otisz\Billingo\Services\Organization organization()
  * @method static \Otisz\Billingo\Services\DocumentBlocks documentBlocks()
+ * @method static \Otisz\Billingo\Services\Documents documents()
  */
 class Billingo extends Facade
 {
