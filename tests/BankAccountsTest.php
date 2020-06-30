@@ -14,6 +14,7 @@ class BankAccountsTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        $this->markTestIncomplete('Cannot be tested, because I do not have permissions yet.');
 
         $this->payload = [
             'name' => $this->faker->words(3, true),
@@ -28,7 +29,6 @@ class BankAccountsTest extends TestCase
     /** @test */
     public function bankAccountIndex(): void
     {
-        $this->markTestIncomplete();
         $bankAccount = Billingo::bankAccount()->store($this->payload);
 
         $response = Billingo::bankAccount()->index();
@@ -39,7 +39,6 @@ class BankAccountsTest extends TestCase
     /** @test */
     public function bankAccountStore(): void
     {
-        $this->markTestIncomplete();
         $this->assertArrayNotHasKey('id', $this->payload);
 
         $response = Billingo::bankAccount()->store($this->payload);
@@ -57,7 +56,6 @@ class BankAccountsTest extends TestCase
     /** @test */
     public function bankAccountShow(): void
     {
-        $this->markTestIncomplete();
         $bankAccount = Billingo::bankAccount()->store($this->payload);
 
         $response = Billingo::bankAccount()->show($bankAccount['id']);
@@ -68,7 +66,6 @@ class BankAccountsTest extends TestCase
     /** @test */
     public function bankAccountUpdate(): void
     {
-        $this->markTestIncomplete();
         $bankAccount = Billingo::bankAccount()->store($this->payload);
 
         $payload = $bankAccount;
@@ -84,7 +81,6 @@ class BankAccountsTest extends TestCase
     /** @test */
     public function bankAccountDestroy(): void
     {
-        $this->markTestIncomplete();
         $bankAccount = Billingo::bankAccount()->store($this->payload);
 
         Billingo::bankAccount()->destroy($bankAccount['id']);
