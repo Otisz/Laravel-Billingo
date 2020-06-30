@@ -149,7 +149,7 @@ class DocumentsTest extends TestCase
 
         $document = Billingo::documents()->store($this->payload);
 
-        sleep(3);
+        sleep(5);
 
         $response = Billingo::documents()->download($document['id']);
 
