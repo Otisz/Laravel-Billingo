@@ -180,7 +180,7 @@ class DocumentsTest extends TestCase
 
         $document = Billingo::documents()->store($this->payload);
 
-        $response = Billingo::documents()->paymentsShow($document['id']);
+        $response = Billingo::documents()->payments($document['id'])->show();
 
         $this->assertEquals(today()->toDateString(), head($response)['date']);
         $this->assertEquals(
@@ -198,7 +198,7 @@ class DocumentsTest extends TestCase
 
         $document = Billingo::documents()->store($this->payload);
 
-        $response = Billingo::documents()->paymentsUpdate($document['id'], [
+        $response = Billingo::documents()->payments($document['id'])->update([
             [
                 'date' => today()->toDateString(),
                 'price' => 2,
@@ -219,16 +219,16 @@ class DocumentsTest extends TestCase
 
         $document = Billingo::documents()->store($this->payload);
 
-        Billingo::documents()->paymentsUpdate($document['id'], [
+        Billingo::documents()->payments($document['id'])->update([
             [
                 'date' => today()->toDateString(),
                 'price' => 2,
                 'payment_method' => 'bankcard',
             ],
         ]);
-        Billingo::documents()->paymentsDestroy($document['id']);
+        Billingo::documents()->payments($document['id'])->destroy();
 
-        $this->assertEmpty(Billingo::documents()->paymentsShow($document['id']));
+        $this->assertEmpty(Billingo::documents()->payments($document['id'])->show());
     }
 
     /** @test */

@@ -84,37 +84,6 @@ class Documents
      *
      * @return array
      */
-    public function paymentsShow(int $documentID): array
-    {
-        return Billingo::get("{$this->uri}/{$documentID}/payments");
-    }
-
-    /**
-     * @param  int  $documentID
-     * @param  array  $payload
-     *
-     * @return array
-     */
-    public function paymentsUpdate(int $documentID, array $payload): array
-    {
-        return Billingo::put("{$this->uri}/{$documentID}/payments", $payload);
-    }
-
-    /**
-     * @param  int  $documentID
-     *
-     * @return void
-     */
-    public function paymentsDestroy(int $documentID): void
-    {
-        Billingo::delete("{$this->uri}/{$documentID}/payments");
-    }
-
-    /**
-     * @param  int  $documentID
-     *
-     * @return array
-     */
     public function publicURL(int $documentID): array
     {
         return Billingo::get("{$this->uri}/{$documentID}/public-url");
@@ -128,5 +97,15 @@ class Documents
     public function send(int $documentID): array
     {
         return Billingo::post("{$this->uri}/{$documentID}/send");
+    }
+
+    /**
+     * @param  int  $documentID
+     *
+     * @return \Otisz\Billingo\Services\DocumentPayments
+     */
+    public function payments(int $documentID): DocumentPayments
+    {
+        return new DocumentPayments($this->uri, $documentID);
     }
 }

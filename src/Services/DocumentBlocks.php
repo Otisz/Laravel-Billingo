@@ -8,7 +8,12 @@ class DocumentBlocks
 {
     private $uri = 'document-blocks';
 
-    public function index(array $payload = [])
+    /**
+     * @param  array  $payload
+     *
+     * @return array
+     */
+    public function index(array $payload = []): array
     {
         return Billingo::get($this->uri, $payload);
     }

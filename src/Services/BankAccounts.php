@@ -2,6 +2,7 @@
 
 namespace Otisz\Billingo\Services;
 
+use Exception;
 use Otisz\Billingo\Facades\Billingo;
 
 class BankAccounts
@@ -10,7 +11,7 @@ class BankAccounts
 
     public function __construct()
     {
-        throw new \Exception('Unfinished feature. Forbidden from Billingo.');
+        throw new Exception('Unfinished feature. Forbidden from Billingo.');
     }
 
     /**
