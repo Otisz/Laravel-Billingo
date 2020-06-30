@@ -14,10 +14,8 @@ class BillingoServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind('billingo', static function (Application $app) {
-            return new Billingo(
-                new Gateway($app['config']['billingo']['api_key'])
-            );
+        $this->app->singleton('billingo', static function (Application $app) {
+            return new Billingo($app['config']['billingo']['api_key']);
         });
 
         $this->app->alias('billingo', Billingo::class);

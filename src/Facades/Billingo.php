@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Facade;
  * @method static array documentLanguages()
  * @method static array countryList()
  * @method static \Psr\Http\Message\ResponseInterface download(string $uri)
- * @method static \Otisz\Billingo\Gateway gateway()
  * @method static \Otisz\Billingo\Services\Partners partners()
  * @method static \Otisz\Billingo\Services\Products products()
  * @method static \Otisz\Billingo\Services\BankAccounts bankAccount()
