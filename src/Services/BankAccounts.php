@@ -2,17 +2,16 @@
 
 namespace Otisz\Billingo\Services;
 
-use Exception;
 use Otisz\Billingo\Facades\Billingo;
 
+/**
+ * This service is untested.
+ * Currently i don't have permission to use those endpoints.
+ * If you have any issue, feel free to open an issue on GitHub.
+ */
 class BankAccounts
 {
     private $uri = 'bank-accounts';
-
-    public function __construct()
-    {
-        throw new Exception('Unfinished feature. Forbidden from Billingo.');
-    }
 
     /**
      * @param  array  $payload
