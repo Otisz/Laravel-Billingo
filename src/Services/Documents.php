@@ -10,12 +10,21 @@ class Documents
     private $uri = 'documents';
 
     /**
+     * @param  int  $page
+     * @param  int  $perPage
      * @param  array  $payload
      *
      * @return array
      */
-    public function index(array $payload = []): array
+    public function index(int $page = 1, int $perPage = 25, array $payload = []): array
     {
+        if ($perPage > 100 || $perPage < 1) {
+            $perPage = 25;
+        }
+
+        $payload['page'] = $page;
+        $payload['per_page'] = $perPage;
+
         return Billingo::get($this->uri, $payload);
     }
 

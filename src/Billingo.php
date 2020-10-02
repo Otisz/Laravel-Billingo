@@ -92,6 +92,7 @@ class Billingo
      * @param  string  $uri
      *
      * @return \Psr\Http\Message\ResponseInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function download(string $uri): ResponseInterface
     {

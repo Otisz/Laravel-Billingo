@@ -9,12 +9,13 @@ class Currencies
     private $uri = 'currencies';
 
     /**
-     * @param  array  $payload
+     * @param  string  $from
+     * @param  string  $to
      *
      * @return array
      */
-    public function conversationRate(array $payload): array
+    public function conversationRate(string $from, string $to): array
     {
-        return Billingo::get($this->uri, $payload);
+        return Billingo::get($this->uri, ['from' => $from, 'to' => $to]);
     }
 }
