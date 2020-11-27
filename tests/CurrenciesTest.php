@@ -9,12 +9,13 @@ class CurrenciesTest extends TestCase
     /** @test */
     public function currencyConversationRate(): void
     {
-        $payload = ['from' => 'EUR', 'to' => 'HUF'];
+        $from = 'EUR';
+        $to = 'HUF';
 
-        $response = Billingo::currencies()->conversationRate($payload);
+        $response = Billingo::currencies()->conversationRate($from, $to);
 
-        $this->assertEquals($payload['from'], $response['from_currency']);
-        $this->assertEquals($payload['to'], $response['to_currency']);
+        $this->assertEquals($from, $response['from_currency']);
+        $this->assertEquals($to, $response['to_currency']);
 
         $this->assertArrayHasKey('conversation_rate', $response);
     }
