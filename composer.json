@@ -49,7 +49,7 @@
       }
     },
     "branch-alias": {
-      "dev-master": "master"
+      "dev-master": "v3-dev"
     }
   },
   "scripts": {
