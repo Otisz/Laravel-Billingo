@@ -14,7 +14,7 @@ class BankAccountsTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->markTestIncomplete('Cannot be tested, because I do not have permissions yet.');
+        self::markTestIncomplete('Cannot be tested, because I do not have permissions yet.');
 
         $this->payload = [
             'name' => $this->faker->words(3, true),

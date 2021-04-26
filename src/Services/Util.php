@@ -4,10 +4,8 @@ namespace Otisz\Billingo\Services;
 
 use Otisz\Billingo\Facades\Billingo;
 
-class Utils
+class Util
 {
-    private $uri = 'utils';
-
     /**
      * @param  string  $taxNumber
      *
@@ -15,16 +13,16 @@ class Utils
      */
     public function checkTaxNumber(string $taxNumber): array
     {
-        return Billingo::get("{$this->uri}/check-tax-number/{$taxNumber}");
+        return Billingo::get("utils/check-tax-number/{$taxNumber}");
     }
 
     /**
-     * @param  int  $id
+     * @param  int|string  $id
      *
      * @return array
      */
-    public function convertLegacyId(int $id): array
+    public function convertLegacyId($id): array
     {
-        return Billingo::get("{$this->uri}/convert-legacy-id/{$id}");
+        return Billingo::get("utils/convert-legacy-id/{$id}");
     }
 }

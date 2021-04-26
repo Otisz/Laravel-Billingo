@@ -3,6 +3,7 @@
 namespace Otisz\Billingo\Tests;
 
 use Otisz\Billingo\Facades\Billingo;
+use Otisz\Billingo\Facades\Partner;
 
 class PartnersTest extends TestCase
 {
@@ -47,20 +48,22 @@ class PartnersTest extends TestCase
     /** @test */
     public function partnerStore(): void
     {
-        $this->assertArrayNotHasKey('id', $this->payload);
+        self::assertArrayNotHasKey('id', $this->payload);
 
-        $response = Billingo::partners()->store($this->payload);
+        $response = Partner::store($this->payload);
 
-        $this->assertArrayHasKey('id', $response);
+        dd($response);
 
-        $this->assertEquals($this->payload['name'], $response['name']);
-        $this->assertEquals($this->payload['address'], $response['address']);
-        $this->assertEquals($this->payload['emails'][0], $response['emails'][0]);
-        $this->assertEquals($this->payload['taxcode'], $response['taxcode']);
-        $this->assertEquals($this->payload['iban'], $response['iban']);
-        $this->assertEquals($this->payload['swift'], $response['swift']);
-        $this->assertEquals($this->payload['account_number'], $response['account_number']);
-        $this->assertEquals($this->payload['phone'], $response['phone']);
+        self::assertArrayHasKey('id', $response);
+
+        self::assertEquals($this->payload['name'], $response['name']);
+        self::assertEquals($this->payload['address'], $response['address']);
+        self::assertEquals($this->payload['emails'][0], $response['emails'][0]);
+        self::assertEquals($this->payload['taxcode'], $response['taxcode']);
+        self::assertEquals($this->payload['iban'], $response['iban']);
+        self::assertEquals($this->payload['swift'], $response['swift']);
+        self::assertEquals($this->payload['account_number'], $response['account_number']);
+        self::assertEquals($this->payload['phone'], $response['phone']);
     }
 
     /** @test */

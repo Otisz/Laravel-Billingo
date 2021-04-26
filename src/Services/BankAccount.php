@@ -9,10 +9,8 @@ use Otisz\Billingo\Facades\Billingo;
  * Currently i don't have permission to use those endpoints.
  * If you have any issue, feel free to open an issue on GitHub.
  */
-class BankAccounts
+class BankAccount
 {
-    private $uri = 'bank-accounts';
-
     /**
      * @param  int  $page
      * @param  int  $perPage
@@ -25,12 +23,10 @@ class BankAccounts
             $perPage = 25;
         }
 
-        $payload = [
+        return Billingo::get('bank-accounts', [
             'page' => $page,
             'per_page' => $perPage,
-        ];
-
-        return Billingo::get($this->uri, $payload);
+        ]);
     }
 
     /**
@@ -40,35 +36,37 @@ class BankAccounts
      */
     public function store(array $payload): array
     {
-        return Billingo::post($this->uri, $payload);
+        return Billingo::post('bank-accounts', $payload);
     }
 
     /**
-     * @param  int  $bankAccountID
+     * @param  int|string  $bankAccountID
      *
      * @return array
      */
-    public function show(int $bankAccountID): array
+    public function show($bankAccountID): array
     {
-        return Billingo::get("{$this->uri}/{$bankAccountID}");
+        return Billingo::get("bank-accounts/{$bankAccountID}");
     }
 
     /**
-     * @param  int  $bankAccountID
+     * @param  int|string  $bankAccountID
      * @param  array  $payload
      *
      * @return array
      */
-    public function update(int $bankAccountID, array $payload): array
+    public function update($bankAccountID, array $payload): array
     {
-        return Billingo::put("{$this->uri}/{$bankAccountID}", $payload);
+        return Billingo::put("bank-accounts/{$bankAccountID}", $payload);
     }
 
     /**
-     * @param  int  $bankAccountID
+     * @param  int|string  $bankAccountID
+     *
+     * @return array
      */
-    public function destroy(int $bankAccountID): void
+    public function destroy($bankAccountID): array
     {
-        Billingo::delete("{$this->uri}/{$bankAccountID}");
+        return Billingo::delete("bank-accounts/{$bankAccountID}");
     }
 }

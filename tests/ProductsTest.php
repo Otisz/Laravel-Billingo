@@ -3,6 +3,7 @@
 namespace Otisz\Billingo\Tests;
 
 use Otisz\Billingo\Facades\Billingo;
+use Otisz\Billingo\Facades\Product;
 
 class ProductsTest extends TestCase
 {
@@ -42,7 +43,9 @@ class ProductsTest extends TestCase
     {
         $this->assertArrayNotHasKey('id', $this->payload);
 
-        $response = Billingo::products()->store($this->payload);
+        $response = Product::store($this->payload);
+
+        dd($response);
 
         $this->assertArrayHasKey('id', $response);
 

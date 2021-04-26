@@ -4,10 +4,8 @@ namespace Otisz\Billingo\Services;
 
 use Otisz\Billingo\Facades\Billingo;
 
-class DocumentBlocks
+class DocumentBlock
 {
-    private $uri = 'document-blocks';
-
     /**
      * @param  int  $page
      * @param  int  $perPage
@@ -20,11 +18,9 @@ class DocumentBlocks
             $perPage = 25;
         }
 
-        $payload = [
+        return Billingo::get('document-blocks', [
             'page' => $page,
             'per_page' => $perPage,
-        ];
-
-        return Billingo::get($this->uri, $payload);
+        ]);
     }
 }

@@ -4,10 +4,8 @@ namespace Otisz\Billingo\Services;
 
 use Otisz\Billingo\Facades\Billingo;
 
-class Products
+class Partner
 {
-    private $uri = 'products';
-
     /**
      * @param  int  $page
      * @param  int  $perPage
@@ -20,12 +18,10 @@ class Products
             $perPage = 25;
         }
 
-        $payload = [
+        return Billingo::get('partners', [
             'page' => $page,
             'per_page' => $perPage,
-        ];
-
-        return Billingo::get($this->uri, $payload);
+        ]);
     }
 
     /**
@@ -35,35 +31,37 @@ class Products
      */
     public function store(array $payload): array
     {
-        return Billingo::post($this->uri, $payload);
+        return Billingo::post('partners', $payload);
     }
 
     /**
-     * @param  int  $productID
+     * @param  int|string  $partnerID
      *
      * @return array
      */
-    public function show(int $productID): array
+    public function show($partnerID): array
     {
-        return Billingo::get("{$this->uri}/{$productID}");
+        return Billingo::get("partners/{$partnerID}");
     }
 
     /**
-     * @param  int  $productID
+     * @param  int|string  $partnerID
      * @param  array  $payload
      *
      * @return array
      */
-    public function update(int $productID, array $payload): array
+    public function update($partnerID, array $payload): array
     {
-        return Billingo::put("{$this->uri}/{$productID}", $payload);
+        return Billingo::put("partners/{$partnerID}", $payload);
     }
 
     /**
-     * @param  int  $productID
+     * @param  int|string  $partnerID
+     *
+     * @return array
      */
-    public function destroy(int $productID): void
+    public function destroy($partnerID): array
     {
-        Billingo::delete("{$this->uri}/{$productID}");
+        return Billingo::delete("partners/{$partnerID}");
     }
 }

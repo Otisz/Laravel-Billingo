@@ -2,32 +2,24 @@
 
 namespace Otisz\Billingo\Tests;
 
-use Faker\Factory;
-use Faker\Generator;
 use Illuminate\Foundation\Testing\WithFaker;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Otisz\Billingo\BillingoServiceProvider;
-use Otisz\Billingo\Facades\Billingo;
 
 abstract class TestCase extends Orchestra
 {
     use WithFaker;
 
-    /**
-     * Create a Faker instance for the given locale.
-     *
-     * @param  string|null  $locale
-     * @return \Faker\Generator
-     */
-    protected function makeFaker($locale = null)
+    protected function setUp(): void
     {
-        $locale = 'hu_HU';
+        parent::setUp();
 
-        if (isset($this->app) && $this->app->bound(Generator::class)) {
-            return $this->app->make(Generator::class, ['locale' => $locale]);
-        }
+        self::markTestSkipped('Tests are disabled until i will have subscription');
+    }
 
-        return Factory::create($locale);
+    protected function setUpFaker()
+    {
+        $this->faker = $this->makeFaker('hu_HU');
     }
 
     /**
@@ -42,15 +34,8 @@ abstract class TestCase extends Orchestra
         ];
     }
 
-    /**
-     * @param  \Illuminate\Foundation\Application  $app
-     *
-     * @return array
-     */
-    protected function getPackageAliases($app): array
+    protected function getEnvironmentSetUp($app)
     {
-        return [
-            'billingo' => Billingo::class,
-        ];
+        $app['config']->set('services.billingo.api_key', env('BILLINGO_API_KEY'));
     }
 }
