@@ -8,11 +8,13 @@ use Otisz\Billingo\Facades\Billingo;
 class DocumentExport
 {
     /**
+     * @param  array  $payload
+     *
      * @return array
      */
-    public function export(): array
+    public function export(array $payload): array
     {
-        return Billingo::post('document-export');
+        return Billingo::post('document-export', $payload);
     }
 
     /**

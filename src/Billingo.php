@@ -15,32 +15,32 @@ class Billingo
         $this->apiKey = $apiKey;
     }
 
-    public function get(string $url, array $queries): array
+    public function get(string $url, array $query = null): array
     {
         return $this->client()
-            ->get($url, $queries)
-            ->json();
+            ->get($url, $query)
+            ->json() ?? [];
     }
 
-    public function post(string $url, array $payload): array
+    public function post(string $url, array $payload = []): array
     {
         return $this->client()
             ->post($url, $payload)
-            ->json();
+            ->json() ?? [];
     }
 
-    public function put(string $url, array $payload): array
+    public function put(string $url, array $payload = []): array
     {
         return $this->client()
             ->put($url, $payload)
-            ->json();
+            ->json() ?? [];
     }
 
-    public function delete(string $url, array $payload): array
+    public function delete(string $url): array
     {
         return $this->client()
-            ->delete($url, $payload)
-            ->json();
+            ->delete($url)
+            ->json() ?? [];
     }
 
     public function download(string $url, array $headers = []): Response

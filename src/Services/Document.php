@@ -98,12 +98,13 @@ class Document
 
     /**
      * @param  int|string  $documentID
+     * @param  array  $payload
      *
      * @return array
      */
-    public function createModificationDocument($documentID): array
+    public function createModificationDocument($documentID, array $payload): array
     {
-        return Billingo::post("documents/{$documentID}/create-modification-document");
+        return Billingo::post("documents/{$documentID}/create-modification-document", $payload);
     }
 
     /**
@@ -138,10 +139,21 @@ class Document
 
     /**
      * @param  int|string  $documentID
+     * @param  array  $payload
      *
      * @return array
      */
-    public function deletePayments($documentID): array
+    public function paymentsUpdate($documentID, array $payload)
+    {
+        return Billingo::put("documents/{$documentID}/payments", $payload);
+    }
+
+    /**
+     * @param  int|string  $documentID
+     *
+     * @return array
+     */
+    public function paymentsDestroy($documentID): array
     {
         return Billingo::delete("documents/{$documentID}/payments");
     }

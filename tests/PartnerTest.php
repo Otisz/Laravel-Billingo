@@ -2,15 +2,11 @@
 
 namespace Otisz\Billingo\Tests;
 
-use Otisz\Billingo\Facades\Billingo;
 use Otisz\Billingo\Facades\Partner;
 
-class PartnersTest extends TestCase
+class PartnerTest extends TestCase
 {
-    /**
-     * @var array
-     */
-    protected $payload;
+    protected array $payload;
 
     protected function setUp(): void
     {
@@ -35,24 +31,20 @@ class PartnersTest extends TestCase
         ];
     }
 
-    /** @test */
-    public function partnerIndex(): void
+    public function testIndex(): void
     {
-        $partner = Billingo::partners()->store($this->payload);
+        $partner = Partner::store($this->payload);
 
-        $response = Billingo::partners()->index();
+        $response = Partner::index();
 
-        $this->assertContains($partner, $response['data']);
+        self::assertContains($partner, $response['data']);
     }
 
-    /** @test */
-    public function partnerStore(): void
+    public function testStore(): void
     {
         self::assertArrayNotHasKey('id', $this->payload);
 
         $response = Partner::store($this->payload);
-
-        dd($response);
 
         self::assertArrayHasKey('id', $response);
 
@@ -66,40 +58,37 @@ class PartnersTest extends TestCase
         self::assertEquals($this->payload['phone'], $response['phone']);
     }
 
-    /** @test */
-    public function partnerShow(): void
+    public function testShow(): void
     {
-        $partner = Billingo::partners()->store($this->payload);
+        $partner = Partner::store($this->payload);
 
-        $response = Billingo::partners()->show($partner['id']);
+        $response = Partner::show($partner['id']);
 
-        $this->assertEquals($partner, $response);
+        self::assertEquals($partner, $response);
     }
 
-    /** @test */
-    public function partnerUpdate(): void
+    public function testUpdate(): void
     {
-        $partner = Billingo::partners()->store($this->payload);
+        $partner = Partner::store($this->payload);
 
         $payload = $partner;
         unset($payload['id']);
         $payload['name'] = $this->faker->name;
 
-        $response = Billingo::partners()->update($partner['id'], $payload);
+        $response = Partner::update($partner['id'], $payload);
 
-        $this->assertNotEquals($partner, $response);
-        $this->assertEquals($payload['name'], $response['name']);
+        self::assertNotEquals($partner, $response);
+        self::assertEquals($payload['name'], $response['name']);
     }
 
-    /** @test */
-    public function partnerDestroy(): void
+    public function testDestroy(): void
     {
-        $partner = Billingo::partners()->store($this->payload);
+        $partner = Partner::store($this->payload);
 
-        Billingo::partners()->destroy($partner['id']);
+        Partner::destroy($partner['id']);
 
-        $response = Billingo::partners()->index();
+        $response = Partner::index();
 
-        $this->assertNotContains($partner, $response['data']);
+        self::assertNotContains($partner, $response['data']);
     }
 }

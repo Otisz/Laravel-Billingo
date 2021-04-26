@@ -2,15 +2,14 @@
 
 namespace Otisz\Billingo\Tests;
 
-use Otisz\Billingo\Facades\Billingo;
+use Otisz\Billingo\Facades\Organization;
 
 class OrganizationTest extends TestCase
 {
-    /** @test */
-    public function organizationShow(): void
+    public function testShow(): void
     {
-        $response = Billingo::organization()->show();
+        $response = Organization::show();
 
-        $this->assertArrayHasKey('tax_code', $response);
+        self::assertArrayHasKey('tax_code', $response);
     }
 }

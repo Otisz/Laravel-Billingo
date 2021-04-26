@@ -5,7 +5,7 @@ namespace Otisz\Billingo\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static array export()
+ * @method static array export(array $payload)
  * @method static \Illuminate\Http\Client\Response download(int|string $exportID)
  * @method static array poll(int|string $exportID)
  */
