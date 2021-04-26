@@ -16,7 +16,7 @@ class BankAccountTest extends TestCase
             'name' => $this->faker->words(3, true),
             'account_number' => $this->faker->bankAccountNumber,
             'account_number_iban' => $this->faker->iban('hu'),
-            'swift' => $this->faker->words(3, true),
+            'swift' => $this->faker->swiftBicNumber,
             'currency' => 'HUF',
             'need_qr' => false,
         ];

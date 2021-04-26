@@ -43,5 +43,5 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           files: ./coverage.xml
-          flags: unittests
+          flags: unittests_P${{ matrix.php }}_L${{ matrix.laravel }}
           name: codecov-laravel-billingo
