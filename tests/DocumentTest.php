@@ -65,6 +65,8 @@ class DocumentTest extends TestCase
         $response = Document::index();
 
         self::assertContains($document, $response['data']);
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testStore(): void
@@ -86,12 +88,12 @@ class DocumentTest extends TestCase
         self::assertEquals('paid', $response['payment_status']);
         self::assertEquals($this->payload['payment_method'], $response['payment_method']);
         self::assertEquals($this->payload['currency'], $response['currency']);
-        self::assertEquals(today()->toDateString(), $response['invoice_date']);
         self::assertEquals($this->payload['fulfillment_date'], $response['fulfillment_date']);
         self::assertEquals($this->payload['due_date'], $response['due_date']);
-        self::assertEquals(today()->toDateString(), $response['paid_date']);
         self::assertEquals($this->payload['partner_id'], $response['partner']['id']);
         self::assertEquals($this->payload['language'], $response['language']);
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testShow(): void
@@ -104,6 +106,8 @@ class DocumentTest extends TestCase
         $response = Document::show($document['id']);
 
         self::assertEquals($document, $response);
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testDestroy(): void
@@ -118,6 +122,8 @@ class DocumentTest extends TestCase
         $response = Document::index();
 
         self::assertNotContains($document['id'], $response['data']);
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testArchive(): void
@@ -133,6 +139,8 @@ class DocumentTest extends TestCase
         $response = Document::index();
 
         self::assertNotContains($document['id'], $response['data']);
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testCancel(): void
@@ -145,6 +153,8 @@ class DocumentTest extends TestCase
         $response = Document::cancel($document['id']);
 
         self::assertEquals('cancellation', $response['type']);
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testCopy(): void
@@ -167,6 +177,8 @@ class DocumentTest extends TestCase
         self::assertEquals($document['document_partner']['id'], $response['document_partner']['id']);
         self::assertEquals($document['items'][0], $response['items'][0]);
         self::assertEquals($document['language'], $response['language']);
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testCreateFromProforma(): void
@@ -181,6 +193,8 @@ class DocumentTest extends TestCase
         $response = Document::createFromProforma($document['id']);
 
         self::assertEquals('invoice', $response['type']);
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testCreateModificationDocument(): void
@@ -206,6 +220,8 @@ class DocumentTest extends TestCase
 
         self::assertNotEquals(head($this->payload['items'])['name'], head($response['items'])['name']);
         self::assertEquals($item['name'], head( $response['items'])['name']);
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testDownload(): void
@@ -220,6 +236,8 @@ class DocumentTest extends TestCase
         $response = Document::download($document['id']);
 
         self::assertEquals(200, $response->getStatusCode());
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testOnlineSzamla(): void
@@ -246,12 +264,13 @@ class DocumentTest extends TestCase
 
         $response = Document::payments($document['id']);
 
-        self::assertEquals(today()->toDateString(), head($response)['date']);
         self::assertEquals(
             head($this->payload['items'])['unit_price'] * head($this->payload['items'])['quantity'],
             head($response)['price']
         );
         self::assertEquals($this->payload['payment_method'], head($response)['payment_method']);
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testPaymentsUpdate(): void
@@ -272,6 +291,8 @@ class DocumentTest extends TestCase
         self::assertEquals(today()->toDateString(), head($response)['date']);
         self::assertEquals(2, head($response)['price']);
         self::assertEquals('bankcard', head($response)['payment_method']);
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testPaymentsDestroy(): void
@@ -291,6 +312,8 @@ class DocumentTest extends TestCase
         Document::paymentsDestroy($document['id']);
 
         self::assertEmpty(Document::payments($document['id']));
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testPrintPOS(): void
@@ -303,6 +326,8 @@ class DocumentTest extends TestCase
         $response = Document::printPOS($document['id']);
 
         self::assertEquals('application/octet-stream', $response->header('Content-Type'));
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testPublicURL(): void
@@ -316,6 +341,8 @@ class DocumentTest extends TestCase
 
         self::assertArrayHasKey('public_url', $response);
         self::assertNotEmpty($response['public_url']);
+
+        Partner::destroy($this->payload['partner_id']);
     }
 
     public function testSend(): void
@@ -328,5 +355,7 @@ class DocumentTest extends TestCase
         $response = Document::send($document['id']);
 
         self::assertEquals($response['emails'], $this->partner['emails']);
+
+        Partner::destroy($this->payload['partner_id']);
     }
 }

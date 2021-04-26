@@ -37,7 +37,9 @@ class PartnerTest extends TestCase
 
         $response = Partner::index();
 
-        self::assertContains($partner, $response['data']);
+        self::assertContains($partner['id'], $response['data'][0]);
+
+        Partner::destroy($partner['id']);
     }
 
     public function testStore(): void
@@ -56,6 +58,8 @@ class PartnerTest extends TestCase
         self::assertEquals($this->payload['swift'], $response['swift']);
         self::assertEquals($this->payload['account_number'], $response['account_number']);
         self::assertEquals($this->payload['phone'], $response['phone']);
+
+        Partner::destroy($response['id']);
     }
 
     public function testShow(): void
@@ -65,6 +69,8 @@ class PartnerTest extends TestCase
         $response = Partner::show($partner['id']);
 
         self::assertEquals($partner, $response);
+
+        Partner::destroy($partner['id']);
     }
 
     public function testUpdate(): void
@@ -79,6 +85,8 @@ class PartnerTest extends TestCase
 
         self::assertNotEquals($partner, $response);
         self::assertEquals($payload['name'], $response['name']);
+
+        Partner::destroy($partner['id']);
     }
 
     public function testDestroy(): void

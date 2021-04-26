@@ -31,7 +31,9 @@ class ProductTest extends TestCase
 
         $response = Product::index();
 
-        self::assertContains($product, $response['data']);
+        self::assertContains($product['id'], $response['data'][0]);
+
+        Product::destroy($product['id']);
     }
 
     public function testStore(): void
@@ -50,6 +52,8 @@ class ProductTest extends TestCase
         self::assertEquals($this->payload['unit'], $response['unit']);
         self::assertEquals($this->payload['general_ledger_number'], $response['general_ledger_number']);
         self::assertEquals($this->payload['general_ledger_taxcode'], $response['general_ledger_taxcode']);
+
+        Product::destroy($response['id']);
     }
 
     public function testSow(): void
@@ -59,12 +63,13 @@ class ProductTest extends TestCase
         $response = Product::show($product['id']);
 
         self::assertEquals($product, $response);
+
+        Product::destroy($product['id']);
     }
 
     public function testUpdate(): void
     {
         $product = Product::store($this->payload);
-
 
         $payload = $product;
         unset($payload['id']);
@@ -74,6 +79,8 @@ class ProductTest extends TestCase
 
         self::assertNotEquals($product, $response);
         self::assertEquals($payload['name'], $response['name']);
+
+        Product::destroy($product['id']);
     }
 
     public function testDestroy(): void

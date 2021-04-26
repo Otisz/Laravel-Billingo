@@ -28,7 +28,9 @@ class BankAccountTest extends TestCase
 
         $response = BankAccount::index();
 
-        self::assertContains($bankAccount, $response['data']);
+        self::assertContains($bankAccount['id'], $response['data'][0]);
+
+        BankAccount::destroy($bankAccount['id']);
     }
 
     public function testStore(): void
@@ -45,6 +47,8 @@ class BankAccountTest extends TestCase
         self::assertEquals($this->payload['swift'], $response['swift']);
         self::assertEquals($this->payload['currency'], $response['currency']);
         self::assertEquals($this->payload['need_qr'], $response['need_qr']);
+
+        BankAccount::destroy($response['id']);
     }
 
     public function testShow(): void
@@ -54,6 +58,8 @@ class BankAccountTest extends TestCase
         $response = BankAccount::show($bankAccount['id']);
 
         self::assertEquals($bankAccount, $response);
+
+        BankAccount::destroy($bankAccount['id']);
     }
 
     public function testUpdate(): void
@@ -68,6 +74,8 @@ class BankAccountTest extends TestCase
 
         self::assertNotEquals($bankAccount, $response);
         self::assertEquals($payload['name'], $response['name']);
+
+        BankAccount::destroy($bankAccount['id']);
     }
 
     public function testDestroy(): void

@@ -15,7 +15,6 @@ class CurrencyTest extends TestCase
 
         self::assertEquals($from, $response['from_currency']);
         self::assertEquals($to, $response['to_currency']);
-        self::assertEquals(today()->toDateString(), $response['date']);
 
         self::assertArrayHasKey('conversation_rate', $response);
     }

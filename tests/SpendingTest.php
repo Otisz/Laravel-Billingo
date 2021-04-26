@@ -2,36 +2,15 @@
 
 namespace Otisz\Billingo\Tests;
 
-use Otisz\Billingo\Facades\Partner;
 use Otisz\Billingo\Facades\Spending;
 
 class SpendingTest extends TestCase
 {
-    private array $partner;
-
     private array $payload;
 
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->partner = [
-            'name' => $this->faker->name,
-            'address' => [
-                'country_code' => $this->faker->countryCode,
-                'post_code' => $this->faker->postcode,
-                'city' => $this->faker->city,
-                'address' => $this->faker->streetAddress,
-            ],
-            'emails' => [
-                $this->faker->unique()->safeEmail,
-            ],
-            'taxcode' => $this->faker->numberBetween(600000, 900000),
-            'iban' => $this->faker->iban('hu'),
-            'swift' => $this->faker->swiftBicNumber,
-            'account_number' => $this->faker->bankAccountNumber,
-            'phone' => $this->faker->phoneNumber,
-        ];
 
         $this->payload = [
             'currency' => 'HUF',
@@ -53,19 +32,17 @@ class SpendingTest extends TestCase
 
     public function testIndex(): void
     {
-        $partner = Partner::store($this->partner);
-        $this->payload['partner_id'] = $partner['id'];
         $spending = Spending::store($this->payload);
 
         $response = Spending::index();
 
-        self::assertContains($spending, $response['data']);
+        self::assertContains($spending['id'], $response['data'][0]);
+
+        Spending::destroy($spending['id']);
     }
 
     public function testStore(): void
     {
-        $partner = Partner::store($this->partner);
-        $this->payload['partner_id'] = $partner['id'];
         $response = Spending::store($this->payload);
 
         self::assertArrayHasKey('id', $response);
@@ -79,23 +56,23 @@ class SpendingTest extends TestCase
         self::assertEquals($this->payload['total_vat_amount'], $response['total_vat_amount']);
         self::assertEquals($this->payload['invoice_date'], $response['invoice_date']);
         self::assertEquals($this->payload['due_date'], $response['due_date']);
+
+        Spending::destroy($response['id']);
     }
 
     public function testShow(): void
     {
-        $partner = Partner::store($this->partner);
-        $this->payload['partner_id'] = $partner['id'];
         $spending = Spending::store($this->payload);
 
         $response = Spending::show($spending['id']);
 
         self::assertEquals($spending['id'], $response['id']);
+
+        Spending::destroy($response['id']);
     }
 
     public function testUpdate(): void
     {
-        $partner = Partner::store($this->partner);
-        $this->payload['partner_id'] = $partner['id'];
         $spending = Spending::store($this->payload);
 
         $payload = $spending;
@@ -108,6 +85,8 @@ class SpendingTest extends TestCase
 
         self::assertNotEquals($spending['id'], $response);
         self::assertEquals($payload['category'], $response['category']);
+
+        Spending::destroy($spending['id']);
     }
 
     public function testDestroy(): void
