@@ -1,74 +1,78 @@
-# Laravel Billingo
 
-<p align="center">
-<a href="https://packagist.org/packages/otisz/laravel-billingo"><img src="https://poser.pugx.org/otisz/laravel-billingo/v" alt="Latest Stable Version"></a>
-<a href="https://github.com/Otisz/Laravel-Billingo/actions"><img src="https://github.com/Otisz/Laravel-Billingo/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/otisz/laravel-billingo/stats"><img src="https://poser.pugx.org/otisz/laravel-billingo/downloads" alt="Total downloads"></a>
-<a href="https://packagist.org/packages/otisz/laravel-billingo"><img src="https://poser.pugx.org/otisz/laravel-billingo/license" alt="License"></a>
-</p>
+# Billingo API V3 integration for Laravel
 
-[Billingo](https://www.billingo.hu) API V3 integration for Laravel.
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/otisz/laravel-billingo.svg?style=flat-square)](https://packagist.org/packages/otisz/laravel-billingo)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/otisz/laravel-billingo/run-tests?label=tests)](https://github.com/otisz/laravel-billingo/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/otisz/laravel-billingo/Check%20&%20fix%20styling?label=code%20style)](https://github.com/otisz/laravel-billingo/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/otisz/laravel-billingo.svg?style=flat-square)](https://packagist.org/packages/otisz/laravel-billingo)
 
-## 🔧 Installation
+This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
-You can install the package via [Composer](https://getcomposer.org/)
+## Support us
+
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/Laravel-Billingo.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/Laravel-Billingo)
+
+We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+
+We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+
+## Installation
+
+You can install the package via composer:
 
 ```bash
-$ composer require otisz/laravel-billingo
+composer require otisz/laravel-billingo
 ```
 
 You can publish the config file with:
 
 ```bash
-$ php artisan vendor:publish --tag=billingo
+php artisan vendor:publish --tag="laravel-billingo-config"
 ```
 
-When published, [the `config/billingo.php` config](config/billingo.php) file contains:
+This is the contents of the published config file:
 
 ```php
-<?php
-
 return [
-    /*
-     * Billing API V3 Key
-     *
-     * @see https://app.billingo.hu/api-key
-     */
-    'api_key' => env('BILLINGO_API_KEY'),
 ];
-
 ```
 
-## 🚀 Setup
+Optionally, you can publish the views using
 
-Before you can use the Billingo service provider you have configure it with your API key.
-You can access your API keys here: [https://app.billingo.hu/api-key](https://app.billingo.hu/api-key).
+```bash
+php artisan vendor:publish --tag="laravel-billingo-views"
+```
 
-### Step 1
+## Usage
 
-Click on GENERATE NEW KEY (ÚJ KULCS LÉTREHOZÁSA).
+```php
+$laravelBillingo = new laravel-billingo\LaravelBillingo();
+echo $laravelBillingo->echoPhrase('Hello, laravel-billingo!');
+```
 
-<div align="center"><img src="docs/images/step1.png"></div>
+## Testing
 
-### Step 2
+```bash
+composer test
+```
 
-- Title (Megnevezés): Unique identifier for your token. This title will appear in the document list.
-- Select "Read, write" ("Olvalsás, írás") option so that you can use the package without any problems.
+## Changelog
 
-<div align="center"><img src="docs/images/step2.png"></div>
-
-### Step 3
-
-Put your API key into your `.env` or `billingo.php` config file.
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Contributing
 
-Thank you for considering contributing to Laravel Billingo! You can read the contribution guide [here](.github/CONTRIBUTING.md).
+Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
-Please review [our security policy](https://github.com/Otisz/Laravel-Billingo/security/policy) on how to report security vulnerabilities.
+Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
-## Licence
+## Credits
 
-The Laravel Billingo package is open-source software licensed under the [MIT license](LICENSE.md).
+- [Levente Otta](https://github.com/Otisz)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

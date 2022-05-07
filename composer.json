@@ -1,33 +1,36 @@
 {
     "name": "otisz/laravel-billingo",
     "description": "Billingo API V3 integration for Laravel",
-    "type": "library",
-    "license": "MIT",
     "keywords": [
-        "laravel",
         "billingo",
-        "api",
-        "v3"
+        "laravel",
+        "laravel-billingo"
     ],
+    "homepage": "https://github.com/Otisz/Laravel-Billingo",
+    "license": "MIT",
     "authors": [
         {
             "name": "Levente Otta",
             "email": "leventeotta@gmail.com",
-            "homepage": "https://leventeotta.com"
+            "role": "Author"
         }
     ],
-    "support": {
-        "source": "https://github.com/Otisz/Laravel-Billingo",
-        "issues": "https://github.com/Otisz/Laravel-Billingo/issues"
-    },
     "require": {
-        "php": "^7.4|^8.0",
-        "ext-json": "*",
-        "illuminate/http": "^8.0",
-        "guzzlehttp/guzzle": "^6.5|^7.0"
+        "php": "^8.0",
+        "spatie/laravel-package-tools": "^1.9.2",
+        "illuminate/contracts": "^9.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^6.0"
+        "nunomaduro/collision": "^6.0",
+        "nunomaduro/larastan": "^2.0.1",
+        "orchestra/testbench": "^7.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.1",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpunit/phpunit": "^9.5",
+        "spatie/laravel-ray": "^1.26"
     },
     "autoload": {
         "psr-4": {
@@ -39,21 +42,27 @@
             "Otisz\\Billingo\\Tests\\": "tests"
         }
     },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
-                "Otisz\\Billingo\\BillingoServiceProvider"
+                "Otisz\\Billingo\\LaravelBillingoServiceProvider"
             ]
         },
         "branch-alias": {
             "dev-master": "v3-dev"
         }
-    },
-    "scripts": {
-        "test": "phpunit"
-    },
-    "config": {
-        "sort-packages": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true

@@ -2,38 +2,15 @@
 
 namespace Otisz\Billingo\Tests;
 
-use Illuminate\Foundation\Testing\WithFaker;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Otisz\Billingo\BillingoServiceProvider;
+use Otisz\Billingo\LaravelBillingoServiceProvider;
 
-abstract class TestCase extends Orchestra
+class TestCase extends Orchestra
 {
-    use WithFaker;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
-    protected function setUpFaker()
-    {
-        $this->faker = $this->makeFaker('hu_HU');
-    }
-
-    /**
-     * @param  \Illuminate\Foundation\Application  $app
-     *
-     * @return array
-     */
-    protected function getPackageProviders($app): array
+    protected function getPackageProviders($app)
     {
         return [
-            BillingoServiceProvider::class,
+            LaravelBillingoServiceProvider::class,
         ];
-    }
-
-    protected function getEnvironmentSetUp($app)
-    {
-        $app['config']->set('services.billingo.api_key', env('BILLINGO_API_KEY'));
     }
 }
