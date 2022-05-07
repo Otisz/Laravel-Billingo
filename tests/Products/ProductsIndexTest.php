@@ -32,7 +32,7 @@ class ProductsIndexTest extends TestCase
             ->setName($this->faker->words(asText: true))
             ->setUnit($this->faker->randomElement(['piece', 'hour', 'day']))
             ->setCurrency($this->faker->randomElement(Currencies::cases()))
-            ->setVat($this->faker->randomElement(Vats::cases()))
+            ->setVat($this->faker->randomElement([Vats::PERCENT_0, Vats::PERCENT_27, Vats::AAM]))
             ->setNetUnitPrice($this->faker->randomFloat(2, 1, 100))
             ->setComment($this->faker->sentence)
             ->setGeneralLedgerNumber($this->faker->randomNumber(5))
