@@ -45,3 +45,5 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/phpunit
+        env:
+          BILLINGO_API_KEY: ${{ secrets.BILLINGO_API_KEY }}
