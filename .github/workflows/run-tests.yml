@@ -2,9 +2,9 @@ name: run-tests
 
 on:
   push:
-    branches: [main]
+    branches: [main, v3]
   pull_request:
-    branches: [main]
+    branches: [main, v3]
 
 jobs:
   test:
@@ -44,4 +44,4 @@ jobs:
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Execute tests
-        run: vendor/bin/pest
+        run: vendor/bin/phpunit
