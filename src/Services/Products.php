@@ -39,6 +39,7 @@ class Products extends Gateway
     public function store(ProductBuilder $builder): array
     {
         $builder->validate();
+
         return $this->httpPost('products', $builder->toArray());
     }
 
@@ -64,6 +65,7 @@ class Products extends Gateway
     public function update(int $id, ProductBuilder $builder): array
     {
         $builder->validate();
+
         return $this->httpPut("products/$id", $builder->toArray());
     }
 

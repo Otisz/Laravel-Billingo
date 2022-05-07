@@ -6,7 +6,6 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Otisz\Billingo\Builders\ProductBuilder;
 use Otisz\Billingo\Enums\Currencies;
 use Otisz\Billingo\Enums\Vats;
-use Otisz\Billingo\Exceptions\InvalidProductException;
 use Otisz\Billingo\Facades\Products;
 use Otisz\Billingo\Tests\TestCase;
 

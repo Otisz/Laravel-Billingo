@@ -12,7 +12,7 @@ class LaravelBillingoServiceProvider extends ServiceProvider implements Deferrab
     public function register(): void
     {
         $key = 'config.services.billingo.api_key';
-        $this->app->singleton('billingo.products', fn($app) => new Products(Arr::get($app, $key)));
+        $this->app->singleton('billingo.products', fn ($app) => new Products(Arr::get($app, $key)));
     }
 
     public function provides(): array
