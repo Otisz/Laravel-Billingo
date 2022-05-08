@@ -4,22 +4,22 @@ namespace Otisz\Billingo\Tests\Products;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Otisz\Billingo\Builders\ProductBuilder;
-use Otisz\Billingo\Enums\Currencies;
-use Otisz\Billingo\Enums\Vats;
 use Otisz\Billingo\Exceptions\InvalidProductException;
 use Otisz\Billingo\Facades\Products;
 use Otisz\Billingo\Tests\TestCase;
+use Otisz\Billingo\Tests\Traits\WithProduct;
 
 class ProductsStoreTest extends TestCase
 {
     use WithFaker;
+    use WithProduct;
 
     protected function setUpFaker(): void
     {
         $this->faker = $this->makeFaker('hu_HU');
     }
 
-    public function testItCannotStoreANewProductWithInvalidProperties(): void
+    public function testItCannotStoreNewProductWithInvalidProperties(): void
     {
         $product = ProductBuilder::instance();
 
@@ -27,17 +27,23 @@ class ProductsStoreTest extends TestCase
         Products::store($product);
     }
 
-    public function testItCanStoreANewProduct(): void
+    public function testItCanStoreNewProductWithMinimalProperties(): void
     {
-        $product = ProductBuilder::instance()
-            ->setName($this->faker->words(asText: true))
-            ->setUnit($this->faker->randomElement(['piece', 'hour', 'day']))
-            ->setCurrency($this->faker->randomElement(Currencies::cases()))
-            ->setVat($this->faker->randomElement([Vats::PERCENT_0, Vats::PERCENT_27, Vats::AAM]))
-            ->setNetUnitPrice($this->faker->randomFloat(2, 1, 100))
-            ->setComment($this->faker->sentence)
-            ->setGeneralLedgerNumber($this->faker->randomNumber(5))
-            ->setGeneralLedgerTaxcode($this->faker->randomNumber(5));
+        $product = $this->productFactory(true);
+
+        $response = Products::store($product);
+
+        $this->assertArrayHasKey('id', $response);
+        $this->assertSame($product->getName(), $response['name']);
+        $this->assertSame($product->getUnit(), $response['unit']);
+        $this->assertSame($product->getCurrency(), $response['currency']);
+        $this->assertSame($product->getVat(), $response['vat']);
+        $this->assertSame($product->getNetUnitPrice(), $response['net_unit_price']);
+    }
+
+    public function testItCanStoreNewProductWithAllProperties(): void
+    {
+        $product = $this->productFactory();
 
         $response = Products::store($product);
 

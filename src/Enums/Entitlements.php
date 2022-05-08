@@ -28,27 +28,6 @@ enum Entitlements: string
     case TAM = 'TAM';
     case TRAVEL_AGENCY = 'TRAVEL_AGENCY';
 
-    public function comment(): string
-    {
-        return match ($this) {
-            self::AAM => 'Alanyi adómentesség',
-            self::ANTIQUES => 'Különbözet szerinti szabályozás - gyűjteménydarabok és régiségek -',
-            self::ARTWORK => 'Különbözet szerinti szabályozás - műalkotások -',
-            self::ATK => 'Áfa tv. tárgyi hatályán kívüli ügylet',
-            self::EAM => 'Áfamentes termékexport, azzal egy tekintet alá eső értékesítések, nemzetközi közlekedéshez kapcsolódó áfamentes ügyletek (Áfa tv. 98-109. §)',
-            self::EUE => 'EU más tagállamában áfaköteles (áfa fizetésére az értékesítő köteles)',
-            self::EUFAD37 => 'Áfa tv. 37. § (1) bekezdése alapján a szolgáltatás teljesítése helye az EU más tagállama (áfa fizetésére a vevő köteles)',
-            self::EUFADE => 'Áfa tv. egyéb rendelkezése szerint a teljesítés helye EU más tagállama (áfa fizetésére a vevő kötelezett)',
-            self::HO => 'Áfa tv. szerint EU-n kívül teljesített ügylet',
-            self::KBAET => 'Más tagállamba irányuló áfamentes termékértékesítés (Áfa tv. 89. §)',
-            self::NAM_1 => 'Áfamentes közvetítői tevékenység (Áfa tv. 110. §)',
-            self::NAM_2 => 'Termékek nemzetközi forgalmához kapcsolódó áfamentes ügylet (Áfa tv. 111-118. §)',
-            self::SECOND_HAND => 'Különbözet szerinti szabályozás - használt cikkek -',
-            self::TAM => 'Tevékenység közérdekű jellegére vagy egyéb sajátos jellegére tekintettel áfamentes (Áfa tv. 85-87.§)',
-            self::TRAVEL_AGENCY => 'Különbözet szerinti szabályozás - utazási irodák -',
-        };
-    }
-
     public static function comments(): array
     {
         return [
@@ -68,5 +47,26 @@ enum Entitlements: string
             self::TAM->name => 'Tevékenység közérdekű jellegére vagy egyéb sajátos jellegére tekintettel áfamentes (Áfa tv. 85-87.§)',
             self::TRAVEL_AGENCY->name => 'Különbözet szerinti szabályozás - utazási irodák -',
         ];
+    }
+
+    public function comment(): string
+    {
+        return match ($this) {
+            self::AAM => 'Alanyi adómentesség',
+            self::ANTIQUES => 'Különbözet szerinti szabályozás - gyűjteménydarabok és régiségek -',
+            self::ARTWORK => 'Különbözet szerinti szabályozás - műalkotások -',
+            self::ATK => 'Áfa tv. tárgyi hatályán kívüli ügylet',
+            self::EAM => 'Áfamentes termékexport, azzal egy tekintet alá eső értékesítések, nemzetközi közlekedéshez kapcsolódó áfamentes ügyletek (Áfa tv. 98-109. §)',
+            self::EUE => 'EU más tagállamában áfaköteles (áfa fizetésére az értékesítő köteles)',
+            self::EUFAD37 => 'Áfa tv. 37. § (1) bekezdése alapján a szolgáltatás teljesítése helye az EU más tagállama (áfa fizetésére a vevő köteles)',
+            self::EUFADE => 'Áfa tv. egyéb rendelkezése szerint a teljesítés helye EU más tagállama (áfa fizetésére a vevő kötelezett)',
+            self::HO => 'Áfa tv. szerint EU-n kívül teljesített ügylet',
+            self::KBAET => 'Más tagállamba irányuló áfamentes termékértékesítés (Áfa tv. 89. §)',
+            self::NAM_1 => 'Áfamentes közvetítői tevékenység (Áfa tv. 110. §)',
+            self::NAM_2 => 'Termékek nemzetközi forgalmához kapcsolódó áfamentes ügylet (Áfa tv. 111-118. §)',
+            self::SECOND_HAND => 'Különbözet szerinti szabályozás - használt cikkek -',
+            self::TAM => 'Tevékenység közérdekű jellegére vagy egyéb sajátos jellegére tekintettel áfamentes (Áfa tv. 85-87.§)',
+            self::TRAVEL_AGENCY => 'Különbözet szerinti szabályozás - utazási irodák -',
+        };
     }
 }

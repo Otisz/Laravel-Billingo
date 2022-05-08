@@ -5,6 +5,7 @@ namespace Otisz\Billingo;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
+use Otisz\Billingo\Services\Partners;
 use Otisz\Billingo\Services\Products;
 
 class LaravelBillingoServiceProvider extends ServiceProvider implements DeferrableProvider
@@ -13,10 +14,11 @@ class LaravelBillingoServiceProvider extends ServiceProvider implements Deferrab
     {
         $key = 'config.services.billingo.api_key';
         $this->app->singleton('billingo.products', fn ($app) => new Products(Arr::get($app, $key)));
+        $this->app->singleton('billingo.partners', fn ($app) => new Partners(Arr::get($app, $key)));
     }
 
     public function provides(): array
     {
-        return [Products::class];
+        return [Products::class, Partners::class];
     }
 }

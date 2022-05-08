@@ -2,13 +2,12 @@
 
 namespace Otisz\Billingo\Builders;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Otisz\Billingo\Enums\Currencies;
 use Otisz\Billingo\Enums\Entitlements;
 use Otisz\Billingo\Enums\Vats;
 use Otisz\Billingo\Exceptions\InvalidProductException;
 
-class ProductBuilder implements Arrayable
+class ProductBuilder extends Builder
 {
     protected ?string $comment = null;
     protected Currencies $currency;
@@ -20,37 +19,23 @@ class ProductBuilder implements Arrayable
     protected string $unit;
     protected Vats $vat;
 
-    /**
-     * @return string|null
-     */
     public function getComment(): ?string
     {
         return $this->comment;
     }
 
-    /**
-     * @param  string  $comment
-     * @return ProductBuilder
-     */
-    public function setComment(string $comment): ProductBuilder
+    public function setComment(?string $comment): ProductBuilder
     {
         $this->comment = $comment;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getCurrency(): string
     {
         return $this->currency->value;
     }
 
-    /**
-     * @param  \Otisz\Billingo\Enums\Currencies  $currency
-     * @return ProductBuilder
-     */
     public function setCurrency(Currencies $currency): ProductBuilder
     {
         $this->currency = $currency;
@@ -58,75 +43,47 @@ class ProductBuilder implements Arrayable
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEntitlement(): ?string
     {
         return $this->entitlement?->value;
     }
 
-    /**
-     * @param  \Otisz\Billingo\Enums\Entitlements  $entitlement
-     * @return ProductBuilder
-     */
-    public function setEntitlement(Entitlements $entitlement): ProductBuilder
+    public function setEntitlement(?Entitlements $entitlement): ProductBuilder
     {
         $this->entitlement = $entitlement;
 
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getGeneralLedgerNumber(): ?string
     {
         return $this->generalLedgerNumber;
     }
 
-    /**
-     * @param  string  $generalLedgerNumber
-     * @return ProductBuilder
-     */
-    public function setGeneralLedgerNumber(string $generalLedgerNumber): ProductBuilder
+    public function setGeneralLedgerNumber(?string $generalLedgerNumber): ProductBuilder
     {
         $this->generalLedgerNumber = $generalLedgerNumber;
 
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getGeneralLedgerTaxcode(): ?string
     {
         return $this->generalLedgerTaxcode;
     }
 
-    /**
-     * @param  string  $generalLedgerTaxcode
-     * @return ProductBuilder
-     */
-    public function setGeneralLedgerTaxcode(string $generalLedgerTaxcode): ProductBuilder
+    public function setGeneralLedgerTaxcode(?string $generalLedgerTaxcode): ProductBuilder
     {
         $this->generalLedgerTaxcode = $generalLedgerTaxcode;
 
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param  string  $name
-     * @return ProductBuilder
-     */
     public function setName(string $name): ProductBuilder
     {
         $this->name = $name;
@@ -134,18 +91,11 @@ class ProductBuilder implements Arrayable
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getNetUnitPrice(): float
     {
         return $this->netUnitPrice;
     }
 
-    /**
-     * @param  float  $netUnitPrice
-     * @return ProductBuilder
-     */
     public function setNetUnitPrice(float $netUnitPrice): ProductBuilder
     {
         $this->netUnitPrice = $netUnitPrice;
@@ -153,18 +103,11 @@ class ProductBuilder implements Arrayable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getUnit(): string
     {
         return $this->unit;
     }
 
-    /**
-     * @param  string  $unit
-     * @return ProductBuilder
-     */
     public function setUnit(string $unit): ProductBuilder
     {
         $this->unit = $unit;
@@ -172,28 +115,16 @@ class ProductBuilder implements Arrayable
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getVat(): string
     {
         return $this->vat->value;
     }
 
-    /**
-     * @param  \Otisz\Billingo\Enums\Vats  $vat
-     * @return ProductBuilder
-     */
     public function setVat(Vats $vat): ProductBuilder
     {
         $this->vat = $vat;
 
         return $this;
-    }
-
-    public static function instance(): ProductBuilder
-    {
-        return new self();
     }
 
     public function toArray(): array
