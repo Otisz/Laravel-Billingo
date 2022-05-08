@@ -59,6 +59,7 @@ abstract class Gateway
         ];
 
         return Http::baseUrl('https://api.billingo.hu/v3')
+            ->throw()
             ->withHeaders($merged);
     }
 }
