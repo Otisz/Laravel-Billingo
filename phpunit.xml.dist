@@ -37,6 +37,6 @@
         <junit outputFile="build/report.junit.xml"/>
     </logging>
     <php>
-        <server name="BILLINGO_API_KEY" value="" />
+        <env name="BILLINGO_API_KEY" value="" />
     </php>
 </phpunit>
