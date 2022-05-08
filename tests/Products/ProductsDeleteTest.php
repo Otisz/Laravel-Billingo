@@ -17,13 +17,11 @@ class ProductsDeleteTest extends TestCase
         $this->faker = $this->makeFaker('hu_HU');
     }
 
-    public function testItCanDeleteAProducts(): void
+    public function testItCanDeleteAnExistingProducts(): void
     {
         $product = $this->productFactory();
 
         $created = Products::store($product);
-
-        $totalBefore = Products::index()['total'];
 
         $response = Products::delete($created['id']);
 
@@ -33,9 +31,5 @@ class ProductsDeleteTest extends TestCase
 
         $this->assertSame(0, $response['total']);
         $this->assertEmpty($response['data']);
-
-        $totalAfter = Products::index()['total'];
-
-        $this->assertLessThan($totalBefore, $totalAfter);
     }
 }

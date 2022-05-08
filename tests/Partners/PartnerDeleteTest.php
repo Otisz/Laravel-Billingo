@@ -23,8 +23,6 @@ class PartnerDeleteTest extends TestCase
 
         $created = Partners::store($partner);
 
-        $totalBefore = Partners::index()['total'];
-
         $response = Partners::delete($created['id']);
 
         $this->assertEmpty($response);
@@ -33,9 +31,5 @@ class PartnerDeleteTest extends TestCase
 
         $this->assertSame(0, $response['total']);
         $this->assertEmpty($response['data']);
-
-        $totalAfter = Partners::index()['total'];
-
-        $this->assertLessThan($totalBefore, $totalAfter);
     }
 }
