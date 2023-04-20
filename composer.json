@@ -22,11 +22,11 @@
         "issues": "https://github.com/Otisz/Laravel-Billingo/issues"
     },
     "require": {
-        "php": "^7.2",
+        "php": "^7.2|^8.0",
         "ext-json": "*",
-        "illuminate/support": "5.8.*|~6.0|~7.0|~8.0",
+        "illuminate/support": "5.8.*|~6.0|~7.0|~8.0|~9.0|~10.0",
         "guzzlehttp/guzzle": "~6.0|~7.0",
-        "firebase/php-jwt": "^5.0"
+        "firebase/php-jwt": "^5.0|^6.0"
     },
     "autoload": {
         "psr-4": {

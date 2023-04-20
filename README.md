@@ -6,11 +6,6 @@
 
 [Billingo](https://www.billingo.hu) API integration for Laravel.
 
-# Status: Deprecated
-
-### Billingo API V2 status: Deprecated
-
-Laravel Billingo V2 is using Billingo API V2 which is deprecated. \
 Laravel Billingo V3 is under development.
 
 ## Roadmap
